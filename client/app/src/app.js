@@ -3,7 +3,6 @@ const appName = "Respowser";
 
 require('angular-material');
 require('angular-route');
-// import 'develephant/electangular';
 
 // Inizializzo i moduli
 const SelectModule = require('./select/select.module');
@@ -12,7 +11,6 @@ const ViewModule = require('./view/view.module');
 let app = angular.module(appName, [
     'ngMaterial',
     'ngRoute',
-    // 'electangular',
     SelectModule.name,
     ViewModule.name
 ]);

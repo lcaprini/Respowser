@@ -17,6 +17,12 @@
   "author": "Luca Caprini",
   "license": "",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "electron": "^1.4.1",
+    "angular": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular-messages": "^1.5.5",
+    "angular-material": "^1.1.0",
+    "angular-route": "^1.5.8"
   }
 }
