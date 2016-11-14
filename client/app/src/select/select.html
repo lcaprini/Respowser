@@ -1,0 +1,24 @@
+
+<div id="select" layout="row" layout-align="center center">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Seleziona il progetto</span>
+                <span class="md-subhead">
+                    Usa la form per caricare il progetto da testare<br/>
+                    indicandone il file index.html</span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <md-button ng-click="$ctrl.openDialog()">
+                <span ng-show="!$ctrl.sourceFile">Seleziona index.html</span>
+                <span class="sourceFile" ng-show="$ctrl.sourceFile" ng-bind="$ctrl.sourceFile"></span>
+            </md-button>
+        </md-card-content>
+
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-disabled="!$ctrl.sourceFile" ng-click="$ctrl.loadApp()">Carica</md-button>
+        </md-card-actions>
+    </md-card>
+</div>

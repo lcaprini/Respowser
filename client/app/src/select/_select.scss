@@ -1,0 +1,24 @@
+
+#select {
+    
+    md-card {
+        width: 500px;
+    
+        md-card-content {
+            
+            button {
+                width: 100%;
+                text-align: right;
+                position: relative;
+                height: 36px;
+                text-transform: none;
+                
+                span.sourceFile {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "respowser",
+  "version": "1.0.0",
+  "description": "An Electron browser to test responsive single page application mobile app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "browser",
+    "responsive",
+    "single page application",
+    "mobile"
+  ],
+  "author": "Luca Caprini",
+  "license": "",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  }
+}

@@ -1,0 +1,27 @@
+
+<md-toolbar layout="row" class="md-toolbar-tools">
+    <h1>Test App</h1>
+    <span flex></span>
+    <md-button class="md-icon-button">
+        <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+    </md-button>
+</md-toolbar>
+
+<md-content flex layout="row" id="content">
+
+    <md-list>
+        <md-list-item ng-click="$ctrl.setDevice(1)">
+            Nexus 5
+        </md-list-item>
+        <md-list-item ng-click="$ctrl.setDevice(2)">
+            iPhone 6
+        </md-list-item>
+    </md-list>
+
+    <webview id="webview"
+             ng-src="{{$ctrl.getSourceFile()}}"
+             useragent="{{$ctrl.selectedDevice.userAgent}}"
+             style="display:inline-flex; width:{{$ctrl.selectedDevice.width}}px; height:{{$ctrl.selectedDevice.height}}px"
+             ></webview>
+
+</md-content>
