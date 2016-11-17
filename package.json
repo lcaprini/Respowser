@@ -1,28 +1,34 @@
 {
-  "name": "respowser",
-  "version": "1.0.0",
-  "description": "An Electron browser to test responsive single page application mobile app",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": "",
-  "keywords": [
-    "Electron",
-    "browser",
-    "responsive",
-    "single page application",
-    "mobile"
-  ],
-  "author": "Luca Caprini",
-  "license": "",
-  "devDependencies": {
-    "electron": "^1.4.1",
-    "angular": "^1.5.5",
-    "angular-animate": "^1.5.5",
-    "angular-aria": "^1.5.5",
-    "angular-messages": "^1.5.5",
-    "angular-material": "^1.1.0",
-    "angular-route": "^1.5.8"
-  }
+    "name": "respowser",
+    "version": "1.0.0",
+    "description": "An Electron browser to test responsive single page application mobile app",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "clean": "rm -rf ./dist",
+        "clean:osx": "rm -rf ./dist/osx",
+        "package": "npm run clean:osx && electron-packager . Respowser --platform=darwin --out=dist/osx --overwrite --ignore=dist --ignore=EXTERNAL_www --ignore=.gitignore"
+    },
+    "repository": "",
+    "keywords": [
+        "Electron",
+        "browser",
+        "responsive",
+        "single page application",
+        "mobile"
+    ],
+    "author": "Luca Caprini",
+    "license": "",
+    "dependencies": {
+        "angular": "^1.5.5",
+        "angular-animate": "^1.5.5",
+        "angular-aria": "^1.5.5",
+        "angular-material": "^1.1.0",
+        "angular-messages": "^1.5.5",
+        "angular-route": "^1.5.8"
+    },
+    "devDependencies": {
+        "electron": "^1.4.1",
+        "electron-packager": "^8.3.0"
+    }
 }

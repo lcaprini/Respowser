@@ -1,4 +1,6 @@
 .idea
+dist
+www_test
 node_modules
 /client/app/assets/css/app.css.map
 /client/app/assets/css/app.css

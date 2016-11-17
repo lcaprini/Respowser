@@ -1,12 +1,13 @@
 
 class SelectController{
 
-    constructor($rootScope, $location, $timeout){
+    constructor($rootScope, $location, $timeout, devices){
         console.log("Inizializzazione SelectController");
         this.sourceFile = null;
         this.$rootScope = $rootScope;
         this.$location = $location;
         this.$timeout = $timeout;
+        devices.getDevices();
     }
 
     openDialog(){
@@ -31,6 +32,6 @@ class SelectController{
         this.$location.url("/view");
     }
 }
-SelectController.$inject = ["$rootScope", "$location", "$timeout"];
+SelectController.$inject = ["$rootScope", "$location", "$timeout", "DevicesService"];
 
 module.exports = SelectController;

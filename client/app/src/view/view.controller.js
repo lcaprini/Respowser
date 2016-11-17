@@ -1,16 +1,18 @@
 
 class MainController{
-    constructor($rootScope){
+    constructor($rootScope, devices){
         console.log("Inizializzazione MainController");
 
         this.$rootScope = $rootScope;
-        // this.$rootScope.sourceFile = "/Users/Masterplan/Development/Projects/Respowser/EXTERNAL_www/index.html";
+        this.devices = devices;
         this.selectedDevice = {
             model : "iPhone 6",
             width: 375,
             height: 667,
             userAgent : "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
         };
+
+        console.log(devices.getList());
 
         let webview = document.querySelector("#webview");
         webview.addEventListener("dom-ready", () => {
@@ -51,7 +53,6 @@ class MainController{
         webview.reload();
     }
 }
-
-MainController.$inject = ["$rootScope"];
+MainController.$inject = ["$rootScope", "DevicesService"];
 
 module.exports = MainController;
