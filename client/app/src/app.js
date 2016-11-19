@@ -2,22 +2,21 @@
 require('angular-material');
 require('angular-route');
 
-// Initialize appModules names
+// Initialize appModules
 const appName = 'Respowser';
-
-const ControllersModule = require('./core/controllers/controllers.module');
-const ServicesModule = require('./core/services/services.module.js');
-const ModulesModule = require('./core/modules/modules.module.js');
-const FiltersModule = require('./core/filters/filters.module');
-const DirectivesModule = require('./core/directives/directives.module');
-
+const ControllersModule = require('./controllers/controllers.module');
+const ServicesModule = require('./services/services.module.js');
+const ModulesModule = require('./modules/modules.module.js');
+const FiltersModule = require('./filters/filters.module');
+const DirectivesModule = require('./directives/directives.module');
 
 
+// Create main app module
 let app = angular.module(appName, [
     'ngMaterial',
     'ngRoute',
 
-
+    // Inject modules
     ControllersModule.name,
     ServicesModule.name,
     ModulesModule.name,
@@ -28,16 +27,15 @@ let app = angular.module(appName, [
 
 
 
-function run($rootScope){
+function run(){
     console.log(`Starting the ${appName} app`);
-    $rootScope.appName = appName;
 }
-run.$inject = ['$rootScope'];
+run.$inject = [];
 app.run(run);
 
 
 
-
+// Define main routing rules
 function router($routeProvider){
     $routeProvider
         .otherwise({
