@@ -1,0 +1,22 @@
+
+#deviceList {
+    background: lightgray;
+
+    .md-accordion {
+
+        .mini-toolbar {
+            min-height: 30px;
+            height: 30px;
+            background-color: gray;
+            border-bottom-color: #636363;
+
+            .md-toolbar-tools {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+#webview {
+    display: inline-flex;
+}

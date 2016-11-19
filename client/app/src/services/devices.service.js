@@ -1,29 +1,35 @@
 
+const CONST = require("../_core/constants");
+
 class DevicesService {
 
-    constructor($http){
-        this.$http = $http;
-    }
+    constructor(StorageService){
+        this.storage = StorageService;
 
-    getList(){
-        return this.list;
+        this.devices = require("../../devices/devices");
     }
 
     getDevices(){
-        var _that = this;
-        this.$http.get('datas/devices.json').then(
-            (response)=>{
-                _that.list = response.data.list;
-                console.warn("devices success", response);
-            },
-            (err)=>{
-                console.error("devices error", err);
-            }
-        )
+        return this.devices;
     }
-    static factory($http){
-        return new DevicesService($http);
+
+    getLastDevice(){
+        return this.storage.get(CONST.STORAGE.LAST_DEVICE).then(
+            (device) => {
+                if(!device.name)
+                    device = this.devices.phones[0];
+
+                return device;
+            },
+            (err) => {
+                throw err;
+            }
+        );
+    }
+
+    static factory(StorageService){
+        return new DevicesService(StorageService);
     }
 }
-DevicesService.factory.$inject = ['$http'];
+DevicesService.factory.$inject = ["StorageService"];
 module.exports = DevicesService;

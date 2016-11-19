@@ -25,7 +25,9 @@
     "angular-aria": "^1.5.5",
     "angular-material": "^1.1.0",
     "angular-messages": "^1.5.5",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "bluebird": "^3.4.6",
+    "electron-json-storage": "^2.1.0"
   },
   "devDependencies": {
     "electron": "^1.4.1",

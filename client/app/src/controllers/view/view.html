@@ -1,6 +1,5 @@
-
 <md-toolbar layout="row" class="md-toolbar-tools">
-    <h1>Test App</h1>
+    <h1>{{$ctrl.app.name}}</h1>
     <span flex></span>
     <md-button class="md-icon-button">
         <md-icon md-svg-icon="assets/fonts/ic_screen_rotation_black_24px.svg"></md-icon>
@@ -9,19 +8,34 @@
 
 <md-content flex layout="row" id="content">
 
-    <md-list>
-        <md-list-item ng-click="$ctrl.setDevice(1)">
-            Nexus 5
-        </md-list-item>
-        <md-list-item ng-click="$ctrl.setDevice(2)">
-            iPhone 6
-        </md-list-item>
+    <md-list id="deviceList" flex="20">
+        <div class="md-accordion" ng-repeat="(type, list) in $ctrl.devicesList">
+            <md-toolbar class="mini-toolbar" ng-init="$ctrl.acc[type].expanded = false"
+                        ng-click="$ctrl.acc[type].expanded = !$ctrl.acc[type].expanded">
+                <div class="md-toolbar-tools">
+                    {{type}}
+                    <span flex></span>
+                    <span ng-class="{expandCollapse:true, active:$ctrl.acc[type].expanded}"></span>
+                </div>
+            </md-toolbar>
+            <div ng-class="{dataContent:true, activeContent:$ctrl.acc[type].expanded}">
+                <md-list>
+                    <md-list-item ng-repeat="device in list" ng-click="$ctrl.setDevice(device)">
+                        {{device.model}}
+                    </md-list-item>
+                </md-list>
+            </div>
+        </div>
     </md-list>
 
-    <webview id="webview"
-             ng-src="{{$ctrl.getSourceFile()}}"
-             useragent="{{$ctrl.selectedDevice.userAgent}}"
-             style="display:inline-flex; width:{{$ctrl.selectedDevice.width}}px; height:{{$ctrl.selectedDevice.height}}px"
-             ></webview>
+    <div flex>
+
+        <webview id="webview"
+                 ng-src="{{$ctrl.app.full}}"
+                 useragent="{{$ctrl.device.userAgent}}"
+                 style="width:{{$ctrl.device.width}}px; height:{{$ctrl.device.height}}px"
+        ></webview>
+
+    </div>
 
 </md-content>

@@ -1,58 +1,45 @@
 
-class MainController{
-    constructor($rootScope, devices){
-        console.log("Inizializzazione MainController");
+const App = require("../../_core/app");
+const storage = require("electron-json-storage");
+const CONST = require("../../_core/constants");
 
-        this.$rootScope = $rootScope;
+class ViewController{
+
+    constructor(devices, storage, $q){
+        console.info("ViewController:constructor");
         this.devices = devices;
-        this.selectedDevice = {
-            model : "iPhone 6",
-            width: 375,
-            height: 667,
-            userAgent : "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
-        };
+        this.storage = storage;
+        this.$q = $q;
 
-        console.log(devices.getList());
 
-        let webview = document.querySelector("#webview");
-        webview.addEventListener("dom-ready", () => {
-            webview.getWebContents().openDevTools({mode:"right"});
-        });
+
+
+
+        // let webview = document.querySelector("#webview");
+        // webview.addEventListener("dom-ready", () => {
+        //     webview.getWebContents().openDevTools();
+        // });
+
+        this.init();
     }
 
-    getSourceFile(){
-        console.log("getSourceFile", this.$rootScope.sourceFile);
-        return this.$rootScope.sourceFile;
-    }
+    init(){
+        this.devicesList = this.devices.getDevices();
+        this.$q.all([
+            this.devices.getLastDevice(),
+            this.storage.get(CONST.STORAGE.LAST_APP)
+        ])
+        .then(
+            (datas) => {
+                this.device = datas[0];
+                this.app = datas[1];
 
-    getDevice(){
-        return this.selectedDevice;
-    }
-
-    setDevice(deviceID){
-        if(deviceID == 1){
-            this.selectedDevice = {
-                model : "Nexus 5X",
-                width: 412,
-                height: 732,
-                userAgent : "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36"
-            };
-        }
-        else {
-            this.selectedDevice = {
-                model : "iPhone 6",
-                width: 375,
-                height: 667,
-                userAgent : "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
+                console.log("device", this.device);
+                console.log("app", this.app);
             }
-        }
-        let webview = document.querySelector("#webview");
-        console.log("webview", webview);
-
-        webview.setUserAgent(this.selectedDevice.userAgent);
-        webview.reload();
+        );
     }
 }
-MainController.$inject = ["$rootScope", "DevicesService"];
+ViewController.$inject = ["DevicesService", "StorageService", "$q"];
 
-module.exports = MainController;
+module.exports = ViewController;

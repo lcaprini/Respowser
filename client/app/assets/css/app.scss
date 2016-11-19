@@ -3,6 +3,7 @@
     display: none !important;
 }
 
+
 html, body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -11,5 +12,6 @@ html, body {
     padding: 0;
 }
 
-@import "../../src/select/select";
-@import "../../src/view/view";
+@import "md-accordion";
+@import "../../src/controllers/select/select";
+@import "../../src/controllers/view/view";
