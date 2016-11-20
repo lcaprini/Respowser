@@ -28,13 +28,16 @@
         </div>
     </md-list>
 
-    <div flex>
+    <div id="deviceContainer" flex>
 
-        <webview id="webview"
-                 ng-src="{{$ctrl.app.full}}"
-                 useragent="{{$ctrl.device.userAgent}}"
-                 style="width:{{$ctrl.device.width}}px; height:{{$ctrl.device.height}}px"
-        ></webview>
+        <div id="device" ng-style="$ctrl.device.deviceStyle">
+
+            <webview id="webview"
+                     src="devices/empty.html"
+                     ng-style="$ctrl.device.displayStyle"
+            ></webview>
+
+        </div>
 
     </div>
 

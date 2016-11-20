@@ -10,20 +10,12 @@ class ViewController{
         this.devices = devices;
         this.storage = storage;
         this.$q = $q;
-
-
-
-
-
-        // let webview = document.querySelector("#webview");
-        // webview.addEventListener("dom-ready", () => {
-        //     webview.getWebContents().openDevTools();
-        // });
-
         this.init();
     }
 
     init(){
+        let _that = this;
+
         this.devicesList = this.devices.getDevices();
         this.$q.all([
             this.devices.getLastDevice(),
@@ -34,10 +26,33 @@ class ViewController{
                 this.device = datas[0];
                 this.app = datas[1];
 
-                console.log("device", this.device);
-                console.log("app", this.app);
+                document.querySelector("#device").style.transform = "scale(0.32)";
+
+                let webview = document.querySelector("#webview");
+
+                const loadApp = () => {
+                    console.log("loadApp");
+                    webview.removeEventListener('dom-ready', loadApp);
+                    webview.loadURL("file://"+this.app.full, {
+                        userAgent : this.device.userAgent
+                    });
+                    webview.getWebContents().enableDeviceEmulation({
+                        screenPosition : "mobile",
+                    });
+                };
+                webview.addEventListener('dom-ready', loadApp);
             }
         );
+    }
+
+    calculateDeviceSize(device){
+
+        let container = document.querySelector("#deviceContainer");
+
+
+
+
+        return device;
     }
 }
 ViewController.$inject = ["DevicesService", "StorageService", "$q"];

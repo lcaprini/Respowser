@@ -1,16 +1,27 @@
 {
     "phones": [
         {
+            "model": "iPhone 6s",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+            "screen" : "mobile",
+            "deviceStyle": {
+                "width": "871px",
+                "height": "1777px",
+                "background-image": "url(devices/apple-iphone-6s.png)",
+                "background-size" : "871px 1777px",
+                "padding": "228px 60px 215px 61px"
+            },
+            "displayStyle": {
+                "width" : "375px",
+                "height" : "667px",
+                "transform": "scale(2)"
+            }
+        },
+        {
             "model": "Nexus 5X",
             "width": 412,
             "height": 732,
             "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36"
-        },
-        {
-            "model": "iPhone 6",
-            "width": 375,
-            "height": 667,
-            "serAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
         }
     ],
     "tables": [
