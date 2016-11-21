@@ -1,6 +1,6 @@
 
 #deviceList {
-    background: lightgray;
+    background: #d6edff;
     width: 120px;
     padding: 0;
 
@@ -9,15 +9,45 @@
         .mini-toolbar {
             min-height: 30px;
             height: 30px;
-            color: #353535;
-            background-color: #a9a9a9;
-            border-bottom-color: #353535;
+            color: #ffffff;
+            background-color: #2196F3;
 
             .md-toolbar-tools {
                 font-size: 15px;
                 
                 svg {
-                    fill: #353535;
+                    fill: #ffffff;
+                }
+            }
+        }
+        .dataContent {
+            md-list {
+                padding: 0;
+    
+                md-list-item {
+                    .device {
+                        padding-top: 5px;
+                        md-icon.badge {
+                            position: absolute;
+                            top: 5px;
+                            right: 15px;
+                            
+                            svg {
+                                fill: #4CAF50;
+                                width: 130%;
+                                height: 130%;
+                                background: white;
+                                border-radius: 50%;
+                            }
+                        }
+                        img {
+                            width: 70%;
+                            margin: 0 auto;
+                        }
+                        label {
+                            line-height: 20px;
+                        }
+                    }
                 }
             }
         }
