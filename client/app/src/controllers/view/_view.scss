@@ -1,17 +1,24 @@
 
 #deviceList {
     background: lightgray;
+    width: 120px;
+    padding: 0;
 
     .md-accordion {
 
         .mini-toolbar {
             min-height: 30px;
             height: 30px;
-            background-color: gray;
-            border-bottom-color: #636363;
+            color: #353535;
+            background-color: #a9a9a9;
+            border-bottom-color: #353535;
 
             .md-toolbar-tools {
                 font-size: 15px;
+                
+                svg {
+                    fill: #353535;
+                }
             }
         }
     }

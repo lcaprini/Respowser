@@ -4,6 +4,10 @@ const electron = require("electron");
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
+// Module to read and write JSON on file system
+const storage = require("electron-json-storage");
+// Module for all app constants
+const CONST = require("./client/app/src/_core/constants");
 
 // Live-reload
 require("electron-reload")(__dirname);
@@ -19,6 +23,9 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow(config.window);
+
+    // Delete last app reference
+    storage.delete(CONST.STORAGE.LAST_APP);
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({

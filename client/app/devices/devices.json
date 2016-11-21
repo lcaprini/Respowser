@@ -3,18 +3,21 @@
         {
             "model": "iPhone 6s",
             "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-            "screen" : "mobile",
-            "deviceStyle": {
-                "width": "871px",
-                "height": "1777px",
-                "background-image": "url(devices/apple-iphone-6s.png)",
-                "background-size" : "871px 1777px",
-                "padding": "228px 60px 215px 61px"
+            "screen": "mobile",
+            "thumb": "apple-iphone-6s.png",
+            "width": 871,
+            "height": 1777,
+            "frame": {
+                "image": "apple-iphone-6s.png",
+                "top": 228,
+                "right": 60,
+                "bottom": 215,
+                "left": 61
             },
-            "displayStyle": {
-                "width" : "375px",
-                "height" : "667px",
-                "transform": "scale(2)"
+            "display": {
+                "width": 375,
+                "height": 667,
+                "ratio": 2
             }
         },
         {

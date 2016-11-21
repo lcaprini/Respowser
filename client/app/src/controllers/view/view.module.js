@@ -6,7 +6,15 @@ function router($routeProvider){
         .when('/view',{
             templateUrl  : `${__dirname}/view.html`,
             controller   : Controller,
-            controllerAs : "$ctrl"
+            controllerAs : "$ctrl",
+            resolve      : {
+                device : [
+                    "DevicesService",
+                    (devices) => {
+                        // Get last used device
+                        return devices.getLastDevice();
+                }]
+            }
         }
     )
 }

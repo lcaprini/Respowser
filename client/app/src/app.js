@@ -1,7 +1,6 @@
 
 require("angular-material");
 require("angular-route");
-const config = require("../../../config");
 
 // Initialize appModules
 const appName = "Respowser";
@@ -40,7 +39,7 @@ app.run(run);
 function router($routeProvider){
     $routeProvider
         .otherwise({
-            redirectTo : config.selectMode? "/select" : "/view"
+            redirectTo : "/view"
         })
 }
 router.$inject = ["$routeProvider"];
