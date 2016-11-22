@@ -29,18 +29,18 @@
         </div>
     </md-list>
 
-    <div id="deviceContainer" flex>
+    <div id="deviceContainer">
+        <div id="orientation">
+            <div id="device" ng-style="$ctrl.device.deviceStyle">
 
-        <div id="device" ng-style="$ctrl.device.deviceStyle">
+                <webview id="webview"
+                         src="default.html"
+                         ng-style="$ctrl.device.displayStyle">
 
-            <webview id="webview"
-                     src="default.html"
-                     ng-style="$ctrl.device.displayStyle">
+                </webview>
 
-            </webview>
-
+            </div>
         </div>
-
     </div>
 
 </md-content>
