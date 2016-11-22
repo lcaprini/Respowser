@@ -1,5 +1,6 @@
 
-const Controller = require(`./view.controller`);
+const Controller = require("./view.controller");
+const Device = require("../../_core/device");
 
 function router($routeProvider){
     $routeProvider
@@ -10,9 +11,9 @@ function router($routeProvider){
             resolve      : {
                 device : [
                     "DevicesService",
-                    (devices) => {
+                    (DevicesService) => {
                         // Get last used device
-                        return devices.getLastDevice();
+                        return DevicesService.getLastDevice();
                 }]
             }
         }

@@ -30,16 +30,18 @@
     </md-list>
 
     <div id="deviceContainer">
-        <div id="orientation">
-            <div id="device" ng-style="$ctrl.device.deviceStyle">
+        <div id="device" ng-class="{'landscape':$ctrl.device.isLandscape}">
 
-                <webview id="webview"
-                         src="default.html"
-                         ng-style="$ctrl.device.displayStyle">
+            <img id="frame"
+                 ng-style="$ctrl.device.frameStyle"
+                 ng-src="devices/frames/{{$ctrl.device.frame.image}}" />
 
-                </webview>
+            <webview id="display"
+                     src="default.html"
+                     ng-style="$ctrl.device.displayStyle">
 
-            </div>
+            </webview>
+
         </div>
     </div>
 
