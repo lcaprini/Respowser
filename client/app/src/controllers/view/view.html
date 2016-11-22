@@ -1,4 +1,9 @@
 
+
+<md-toolbar class="md-menu-toolbar">
+    <ng-include src="'src/controllers/toolbar/toolbar.html'"></ng-include>
+</md-toolbar>
+
 <md-content flex layout="row" id="content">
 
     <md-list id="deviceList">
@@ -8,7 +13,7 @@
                 <div class="md-toolbar-tools">
                     {{type}}
                     <span flex></span>
-                    <md-icon md-svg-icon="assets/fonts/arrow_right.svg"
+                    <md-icon md-svg-icon="arrow_right"
                              ng-class="{'expanded' : $ctrl.acc[type].expanded}"></md-icon>
                 </div>
             </md-toolbar>
@@ -17,7 +22,7 @@
                     <md-list-item ng-repeat="device in list" ng-click="$ctrl.setDevice(device)">
 
                         <div class="device" layout="column" layout-align="center center">
-                            <md-icon class="badge" md-svg-icon="assets/fonts/check_circle.svg"
+                            <md-icon class="badge" md-svg-icon="check_circle"
                                      ng-show="device.model == $ctrl.device.model"></md-icon>
                             <img ng-src="devices/thumbs/{{device.thumb}}">
                             <label>{{device.model}}</label>

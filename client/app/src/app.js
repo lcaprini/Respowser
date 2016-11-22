@@ -45,6 +45,14 @@ function router($routeProvider){
 router.$inject = ["$routeProvider"];
 app.config(router);
 
+// Set icon sets
+function icons($mdIconProvider){
+    $mdIconProvider
+        .defaultIconSet("assets/icons/icons.svg");
+}
+icons.$inject = ["$mdIconProvider"];
+app.config(icons);
+
 
 
 module.exports = app;

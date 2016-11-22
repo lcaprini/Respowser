@@ -30,9 +30,12 @@
     "electron-json-storage": "^2.1.0"
   },
   "devDependencies": {
-    "electron": "^1.4.1",
+    "del": "^2.2.2",
+    "electron-connect": "^0.6.1",
     "electron-packager": "^8.3.0",
     "electron-reload": "^1.0.3",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-replace": "^0.5.4",
+    "gulp-svgstore": "^6.1.0"
   }
 }
