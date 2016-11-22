@@ -25,7 +25,7 @@ function createWindow() {
     mainWindow = new BrowserWindow(config.window);
 
     // Delete last app reference
-    storage.delete(CONST.STORAGE.LAST_APP);
+    storage.remove(CONST.STORAGE.LAST_APP);
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
