@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 // Module to read and write JSON on file system
 const storage = require("electron-json-storage");
 // Module for all app constants
-const CONST = require("./client/app/src/_core/constants");
+const CONST = require("./client/src/_core/constants");
 
 // Live-reload
 require("electron-reload")(__dirname);
@@ -29,7 +29,7 @@ function createWindow() {
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "client/app/index.html"),
+        pathname: path.join(__dirname, "client/index.html"),
         protocol: "file:",
         slashes: true
     }));

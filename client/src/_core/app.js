@@ -4,9 +4,11 @@ const path = require("path");
 class App {
 
     constructor(){
-        this.path = null;       // Complete path
+        this.full = null;       // Complete url
+        this.path = null;       // Directory path
         this.folder = null;     // Parent folder
         this.index = null;      // Main html file
+        this.name = "test";       // Name
     }
 
     createFromUrl(url){
@@ -22,8 +24,8 @@ class App {
         this.full = this.full || null;
         this.path = data.path || null;
         this.folder = data.folder || null;
-        this.name = data.name || null;
         this.index = data.index || null;
+        this.name = data.name || null;
     }
 }
 

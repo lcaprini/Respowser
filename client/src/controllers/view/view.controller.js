@@ -15,34 +15,39 @@ class ViewController{
         this.devicesList = this._DevicesService.getDevices();
 
         // Update device info from router resolve
-        this.device = this.updateDevice(new Device(device));
+        this.device = new Device(device);
+        this.updateDevice();
 
         // Initialize default app
-        this.initDefaultApp();
+        this.app = this.initDefaultApp();
     }
 
     initDefaultApp(){
         console.info("ViewController:initDefaultApp");
 
         var path = require('path').dirname(require.main.filename);
-        this.loadApp(path+"/www/index.html");
+        return this.loadApp(path+"/www/index.html");
     }
 
-    updateDevice(device){
+    updateDevice(){
         console.info("ViewController:updateDevice");
 
-        if(device.isPortrait) {
-            device.setPortrait();
+        if(this.device.isPortrait) {
+            this.device.setPortrait();
             // Calc available height
             document.querySelector("#device").style.transform = "scale(0.32)";
         }
         else{
-            device.setLandscape();
+            this.device.setLandscape();
             // Calc available height
             document.querySelector("#device").style.transform = "scale(0.32)";
         }
+    }
 
-        return device;
+    rotateDevice(){
+        console.info("ViewController:rotateDevice");
+        this.device.isPortrait = !this.device.isPortrait;
+        this.updateDevice();
     }
 
     loadApp(sourceFile){
@@ -66,6 +71,8 @@ class ViewController{
             });
         };
         display.addEventListener("dom-ready", loadFrame);
+
+        return app;
     }
 }
 ViewController.$inject = ["DevicesService", "StorageService", "$q", "device"];

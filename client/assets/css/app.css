@@ -1,0 +1,104 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 1024px; }
+
+.md-accordion md-toolbar {
+  cursor: pointer;
+  outline: none; }
+  .md-accordion md-toolbar md-icon {
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s; }
+    .md-accordion md-toolbar md-icon.expanded {
+      -webkit-transform: rotateZ(90deg);
+      transform: rotateZ(90deg); }
+.md-accordion .dataContent {
+  background: #F2F2F2;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: .3s all ease-out;
+  transition: .3s all ease-out;
+  padding-left: 0;
+  padding-right: 0; }
+  .md-accordion .dataContent.activeContent {
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block; }
+
+md-toolbar md-toolbar-filler {
+  width: 100px; }
+  md-toolbar md-toolbar-filler md-icon {
+    width: 50px;
+    height: 50px; }
+
+#select md-card {
+  width: 500px; }
+  #select md-card md-card-content button {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    height: 36px;
+    text-transform: none; }
+    #select md-card md-card-content button span.sourceFile {
+      position: absolute;
+      right: 0;
+      top: 0; }
+
+#deviceList {
+  background: #d6edff;
+  width: 100px !important;
+  min-width: 100px;
+  padding: 0; }
+  #deviceList .md-accordion .mini-toolbar {
+    min-height: 30px;
+    height: 30px;
+    color: #ffffff;
+    background-color: #2196F3; }
+    #deviceList .md-accordion .mini-toolbar .md-toolbar-tools {
+      font-size: 15px; }
+      #deviceList .md-accordion .mini-toolbar .md-toolbar-tools svg {
+        fill: #ffffff; }
+  #deviceList .md-accordion .dataContent md-list {
+    padding: 0; }
+    #deviceList .md-accordion .dataContent md-list md-list-item .device {
+      padding-top: 5px; }
+      #deviceList .md-accordion .dataContent md-list md-list-item .device md-icon.badge {
+        position: absolute;
+        top: 5px;
+        right: 15px; }
+        #deviceList .md-accordion .dataContent md-list md-list-item .device md-icon.badge svg {
+          fill: #4CAF50;
+          background: white;
+          border-radius: 50%; }
+      #deviceList .md-accordion .dataContent md-list md-list-item .device img {
+        width: 70%;
+        margin: 0 auto; }
+      #deviceList .md-accordion .dataContent md-list md-list-item .device label {
+        line-height: 20px; }
+
+#deviceContainer {
+  padding: 60px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden; }
+  #deviceContainer #device {
+    transform-origin: top left;
+    position: relative; }
+    #deviceContainer #device #frame {
+      transform-origin: top left; }
+    #deviceContainer #device #display {
+      transform-origin: top left;
+      position: absolute; }
+  #deviceContainer #device.landscape #frame {
+    transform: rotateZ(90deg) translateY(-100%); }
+
+/*# sourceMappingURL=app.css.map */

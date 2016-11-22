@@ -7,16 +7,16 @@ var replace = require('gulp-replace');
 var electron = require('electron-connect').server.create();
 
 gulp.task('clean:svgstore', function () {
-    return del(['client/app/assets/icons/icons.svg']);
+    return del(['client/assets/icons/icons.svg']);
 });
 
 gulp.task('svgstore', ['clean:svgstore'], function () {
     return gulp
-        .src('client/app/assets/icons/*.svg')
+        .src('client/assets/icons/*.svg')
         .pipe(svgstore())
         .pipe(replace('<symbol', '<g'))
         .pipe(replace('</symbol>', '</g>'))
-        .pipe(gulp.dest('client/app/assets/icons'));
+        .pipe(gulp.dest('client/assets/icons'));
 });
 
 // var electron = require('../../').server.create({
@@ -46,9 +46,15 @@ gulp.task('serve', ['svgstore'], function () {
     ],
         electron.restart);
 
+    // Restart svgstore process
+    gulp.watch([
+        'client/assets/icons/**',
+        '!client/assets/icons/icons.svg'
+    ], ['svgstore']);
+
     // Reload renderer process
     gulp.watch([
-        'client/**'
+        'client'
     ],
         electron.reload);
 });

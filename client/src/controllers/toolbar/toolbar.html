@@ -1,0 +1,62 @@
+<div layout="row">
+    <md-toolbar-filler layout layout-align="center center">
+        <md-icon md-svg-icon="electron"></md-icon>
+    </md-toolbar-filler>
+    <div>
+        <h2 class="md-toolbar-tools">{{$ctrl.app.name}}</h2>
+        <md-menu-bar>
+            <md-menu>
+                <button ng-click="$mdOpenMenu()">
+                    File
+                </button>
+                <md-menu-content>
+                    <md-menu-item class="md-indent">
+                        <md-icon md-svg-icon="content-cut"></md-icon>
+                        <md-button ng-click="ctrl.sampleAction('cut', $event)">
+                            Cut
+                            <span class="md-alt-text">{{ 'M-X' }}</span>
+                        </md-button>
+                    </md-menu-item>
+
+
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.rotateDevice()">
+                            Ruota
+                        </md-button>
+                    </md-menu-item>
+                    <!--<md-menu-divider></md-menu-divider>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-menu>-->
+                            <!--<md-button ng-click="$mdOpenMenu()">New</md-button>-->
+                            <!--<md-menu-content>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Document</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Spreadsheet</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Presentation</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Form</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Drawing</md-button></md-menu-item>-->
+                            <!--</md-menu-content>-->
+                        <!--</md-menu>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button ng-click="ctrl.sampleAction('Open', $event)">-->
+                            <!--Open...-->
+                            <!--<span class="md-alt-text"> {{ 'M-O' }}</span>-->
+                        <!--</md-button>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button disabled="disabled" ng-click="ctrl.sampleAction('Rename', $event)">-->
+                            <!--Rename-->
+                        <!--</md-button>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-divider></md-menu-divider>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button ng-click="ctrl.sampleAction('Print', $event)">-->
+                            <!--Print-->
+                            <!--<span class="md-alt-text">{{ 'M-P' }}</span>-->
+                        <!--</md-button>-->
+                    <!--</md-menu-item>-->
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+    </div>
+</div>
