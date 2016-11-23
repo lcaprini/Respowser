@@ -1,4 +1,5 @@
 
+require('angular');
 require("angular-material");
 require("angular-route");
 
@@ -48,11 +49,16 @@ app.config(router);
 // Set icon sets
 function icons($mdIconProvider){
     $mdIconProvider
-        .defaultIconSet("assets/icons/icons.svg");
+        .defaultIconSet("icons/icons.svg");
 }
 icons.$inject = ["$mdIconProvider"];
 app.config(icons);
 
 
-
-module.exports = app;
+// Boostrap of AngularJS app
+angular
+    .element(document)
+    .ready(function () {
+        let html = document.getElementsByTagName("html")[0];
+        angular.bootstrap(html, [appName]);
+    });

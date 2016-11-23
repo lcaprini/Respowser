@@ -6,17 +6,18 @@ var svgstore = require('gulp-svgstore');
 var replace = require('gulp-replace');
 var electron = require('electron-connect').server.create();
 
+var iconsPath = 'client/icons';
 gulp.task('clean:svgstore', function () {
-    return del(['client/assets/icons/icons.svg']);
+    return del([iconsPath+'/icons.svg']);
 });
 
 gulp.task('svgstore', ['clean:svgstore'], function () {
     return gulp
-        .src('client/assets/icons/*.svg')
+        .src(iconsPath+'/*.svg')
         .pipe(svgstore())
         .pipe(replace('<symbol', '<g'))
         .pipe(replace('</symbol>', '</g>'))
-        .pipe(gulp.dest('client/assets/icons'));
+        .pipe(gulp.dest(iconsPath));
 });
 
 // var electron = require('../../').server.create({
@@ -48,8 +49,8 @@ gulp.task('serve', ['svgstore'], function () {
 
     // Restart svgstore process
     gulp.watch([
-        'client/assets/icons/**',
-        '!client/assets/icons/icons.svg'
+        iconsPath+'/**/*.svg',
+        '!'+iconsPath+'/icons.svg'
     ], ['svgstore']);
 
     // Reload renderer process

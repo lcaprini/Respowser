@@ -1,7 +1,7 @@
 
-const App = require("../../_core/app");
-const Device = require("../../_core/device");
-const CONST = require("../../_core/constants");
+const App = require("core/app");
+const Device = require("core/device");
+const CONST = require("core/constants");
 
 class ViewController{
 

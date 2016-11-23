@@ -1,5 +1,5 @@
 
-const CONST = require("../_core/constants");
+const CONST = require("core/constants");
 
 class DevicesService {
 

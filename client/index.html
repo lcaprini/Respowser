@@ -11,7 +11,7 @@
     <title>Respowser</title>
 
     <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="./assets/css/app.css"/>
+    <link rel="stylesheet" href="./css/app.css"/>
 
 </head>
 
@@ -21,7 +21,8 @@
 
 
 <script type="text/javascript">
-    var boot = require(__dirname+'/src/boot.js');
+    require('app-module-path').addPath(__dirname+"/..");
+    var boot = require(__dirname+'/js/boot.js');
 </script>
 </body>
 

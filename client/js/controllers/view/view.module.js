@@ -1,6 +1,6 @@
 
 const Controller = require("./view.controller");
-const Device = require("../../_core/device");
+const Device = require("core/device");
 
 function router($routeProvider){
     $routeProvider

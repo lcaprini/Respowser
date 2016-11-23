@@ -13,8 +13,8 @@ body {
     min-width: 1024px;
 }
 
-//@import "../icons/icons";
+@import "constants";
 @import "md-accordion";
-@import "../../src/controllers/toolbar/toolbar";
-@import "../../src/controllers/select/select";
-@import "../../src/controllers/view/view";
+@import "../js/controllers/toolbar/toolbar";
+@import "../js/controllers/select/select";
+@import "../js/controllers/view/view";

@@ -1,28 +1,63 @@
 
+require('app-module-path').addPath(__dirname);
+
 const electron = require("electron");
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 // Module to read and write JSON on file system
-const storage = require("electron-json-storage");
+const Promise = require('bluebird');
+const Storage = Promise.promisifyAll(require('electron-json-storage'));
 // Module for all app constants
-const CONST = require("./client/src/_core/constants");
+const CONST = require("core/constants");
+// Class for default app
+const App = require("core/app");
 
 const path = require("path");
 const url = require("url");
-const config = require("./config");
+const config = require("core/config");
+const _ = require("lodash");
 
 // Keep a global reference of the window object, if you don"t, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+function initApp(){
+    console.log("initApp");
+
+    console.log("Check for default app in storage");
+    Storage.getAsync(CONST.STORAGE.DEFAULT_APP).then(
+        (app)=>{
+            if(_.isEmpty(app)){
+                console.log("Default app isn't in storage => Create");
+
+                let defaultApp = new App();
+                Storage.setAsync(CONST.STORAGE.DEFAULT_APP, defaultApp).then(
+                    ()=>{
+                        // Start app
+                        createWindow();
+                    },
+                    (err)=>{
+                        alert(err);
+                    }
+                )
+            }
+            else {
+                console.log("Default app is in storage => Start app");
+                createWindow();
+            }
+        },
+        (err)=>{
+            alert(err);
+        });
+}
+
 function createWindow() {
+    console.log("createWindow");
+
     // Create the browser window.
     mainWindow = new BrowserWindow(config.window);
-
-    // Delete last app reference
-    storage.remove(CONST.STORAGE.LAST_APP);
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
@@ -46,7 +81,7 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+app.on("ready", initApp);
 
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {
@@ -61,7 +96,7 @@ app.on("activate", function () {
     // On OS X it"s common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) {
-        createWindow()
+        initApp()
     }
 });
 

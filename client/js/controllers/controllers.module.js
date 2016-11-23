@@ -1,5 +1,5 @@
 
-const Select = require("./select/select.module");
+// const Select = require("./select/select.module");
 const View = require("./view/view.module");
 
 const angularModule = angular.module("controllers", [
