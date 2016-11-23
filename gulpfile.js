@@ -54,7 +54,7 @@ gulp.task('serve', ['svgstore'], function () {
 
     // Reload renderer process
     gulp.watch([
-        'client'
+        'client/**'
     ],
         electron.reload);
 });

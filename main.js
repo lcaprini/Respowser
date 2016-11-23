@@ -9,9 +9,6 @@ const storage = require("electron-json-storage");
 // Module for all app constants
 const CONST = require("./client/src/_core/constants");
 
-// Live-reload
-require("electron-reload")(__dirname);
-
 const path = require("path");
 const url = require("url");
 const config = require("./config");
