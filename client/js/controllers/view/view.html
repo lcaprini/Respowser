@@ -13,7 +13,7 @@
                 <div class="md-toolbar-tools">
                     <span>{{type}}</span>
                     <span flex></span>
-                    <md-icon md-svg-icon="arrow_right"
+                    <md-icon md-svg-icon="arrow_down"
                              ng-class="{'expanded' : $ctrl.accordion[type].expanded}"></md-icon>
                 </div>
             </md-toolbar>
@@ -27,12 +27,15 @@
                             <img ng-src="devices/thumbs/{{device.thumb}}">
                             <label>{{device.model}}</label>
                         </div>
-
                     </md-list-item>
                 </md-list>
             </div>
         </div>
     </md-list>
+
+    <div id="mainContainer" flex layout="column">
+
+    </div>
 
     <div id="deviceContainer">
         <div id="device" ng-class="{'landscape' : $ctrl.device.orientation == $ctrl.ORIENTATIONS.LANDSCAPE}">

@@ -28,8 +28,10 @@
                 padding: 0;
     
                 md-list-item {
+                    
                     .device {
                         padding-top: 5px;
+                        
                         md-icon.badge {
                             position: absolute;
                             top: 5px;
@@ -82,11 +84,4 @@
             transform: rotateZ(90deg) translateY(-100%);
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }

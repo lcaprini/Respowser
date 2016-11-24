@@ -17,8 +17,8 @@ body {
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s; }
     .md-accordion md-toolbar md-icon.expanded {
-      -webkit-transform: rotateZ(180deg);
-      transform: rotateZ(180deg); }
+      -webkit-transform: rotateZ(-180deg);
+      transform: rotateZ(-180deg); }
 
 .md-accordion .dataContent {
   background: #F2F2F2;
