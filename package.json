@@ -38,6 +38,7 @@
     "electron-reload": "^1.0.3",
     "gulp": "^3.9.1",
     "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.3.2",
     "gulp-svgstore": "^6.1.0",
     "lodash": "^4.17.2"
   }

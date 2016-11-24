@@ -17,8 +17,9 @@ body {
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s; }
     .md-accordion md-toolbar md-icon.expanded {
-      -webkit-transform: rotateZ(90deg);
-      transform: rotateZ(90deg); }
+      -webkit-transform: rotateZ(180deg);
+      transform: rotateZ(180deg); }
+
 .md-accordion .dataContent {
   background: #F2F2F2;
   height: 0;
@@ -38,9 +39,10 @@ md-toolbar md-toolbar-filler {
   md-toolbar md-toolbar-filler md-icon {
     width: 30px;
     height: 30px; }
-md-toolbar h2 {
+
+md-toolbar h3 {
   line-height: 1rem;
-  height: auto;
+  margin: 0;
   padding: 21px;
   color: white; }
 
@@ -107,5 +109,3 @@ md-toolbar h2 {
       position: absolute; }
   #deviceContainer #device.landscape #frame {
     transform: rotateZ(90deg) translateY(-100%); }
-
-/*# sourceMappingURL=app.css.map */

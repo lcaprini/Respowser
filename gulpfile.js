@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var del = require('del');
 var svgstore = require('gulp-svgstore');
 var replace = require('gulp-replace');
@@ -20,32 +21,21 @@ gulp.task('svgstore', ['clean:svgstore'], function () {
         .pipe(gulp.dest(iconsPath));
 });
 
-// var electron = require('../../').server.create({
-//   useGlobalElectron: true,
-//   logLevel: 2
-// });
+gulp.task('sass', function() {
+    gulp.src('client/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('client/'));
+});
 
-gulp.task('serve', ['svgstore'], function () {
+gulp.task('serve', ['svgstore', 'sass'], function () {
     // Start browser process
     electron.start();
-
-    // // Add an argument
-    // electron.start('Hoge!');
-
-    // // Add list of arguments
-    // electron.start(['Hoge', 'foo']);
-
-    // // Callback
-    // electron.start(function () {
-    //   console.log('started');
-    // });
 
     // Restart browser process
     gulp.watch([
         'main.js',
         'config.js'
-    ],
-        electron.restart);
+    ], electron.restart);
 
     // Restart svgstore process
     gulp.watch([
@@ -53,12 +43,16 @@ gulp.task('serve', ['svgstore'], function () {
         '!'+iconsPath+'/icons.svg'
     ], ['svgstore']);
 
+    // Restart svgstore process
+    gulp.watch([
+        'client/**/*.scss'
+    ], ['sass']);
+
     // Reload renderer process
     gulp.watch([
         'client/**',
         'core/**'
-    ],
-        electron.reload);
+    ], electron.reload);
 });
 
 gulp.task('reload:browser', function () {
