@@ -1,39 +1,17 @@
 
-const CONST = require("core/constants");
-
 class DevicesService {
 
-    constructor(StorageService){
-        this.storage = StorageService;
-
-        this.devices = require("../../devices/devices");
+    constructor(){
+        this.devices = require("../../devices/devices.list").devices;
     }
 
     getDevices(){
         return this.devices;
     }
 
-    getLastDevice(){
-        return this.storage.get(CONST.STORAGE.LAST_DEVICE).then(
-            (device) => {
-                // If no device was setted
-                // set first phone in list manually
-                if(!device.name) {
-                    device = this.devices.phones[0];
-                    this.storage.set(CONST.STORAGE.LAST_DEVICE, device);
-                }
-
-                return device;
-            },
-            (err) => {
-                throw err;
-            }
-        );
-    }
-
-    static factory(StorageService){
-        return new DevicesService(StorageService);
+    static factory(){
+        return new DevicesService();
     }
 }
-DevicesService.factory.$inject = ["StorageService"];
+DevicesService.factory.$inject = [];
 module.exports = DevicesService;

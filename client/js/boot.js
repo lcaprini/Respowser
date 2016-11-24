@@ -2,6 +2,7 @@
 require('angular');
 require("angular-material");
 require("angular-route");
+require("angular-filter");
 
 // Initialize appModules
 const appName = "Respowser";
@@ -16,6 +17,7 @@ const DirectivesModule = require("./directives/directives.module");
 let app = angular.module(appName, [
     "ngMaterial",
     "ngRoute",
+    "angular.filter",
 
     // Inject modules
     ControllersModule.name,

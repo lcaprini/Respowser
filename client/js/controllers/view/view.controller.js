@@ -2,79 +2,74 @@
 const App = require("core/app");
 const Device = require("core/device");
 const CONST = require("core/constants");
+const _ = require("lodash");
 
 class ViewController{
 
-    constructor(DevicesService, StorageService, $q, device){
+    constructor(DevicesService, StorageService, $q, app){
         console.info("ViewController:constructor");
-        this._DevicesService = DevicesService;
-        this._StorageService = StorageService;
+        this.ORIENTATIONS = CONST.ORIENTATIONS;
+
+        this.DevicesService = DevicesService;
+        this.StorageService = StorageService;
         this.$q = $q;
+        this.app = app;
 
         // Get the list of all available devices
-        this.devicesList = this._DevicesService.getDevices();
+        this.devicesList = this.DevicesService.getDevices();
 
-        // Update device info from router resolve
-        this.device = new Device(device);
-        this.updateDevice();
+        // Initialize device from last device used for app
+        this.device = new Device(_.find(this.devicesList, {model: app.lastDevice.model}), app.lastDevice.orientation);
+        this.updateDeviceOrientation();
 
         // Initialize default app
-        this.app = this.initDefaultApp();
+        this.initDefaultApp(app);
     }
 
     initDefaultApp(){
         console.info("ViewController:initDefaultApp");
 
         var path = require('path').dirname(require.main.filename);
-        return this.loadApp(path+"/www/index.html");
+        this.loadApp(path + this.app.url);
     }
 
-    updateDevice(){
+    updateDeviceOrientation(){
         console.info("ViewController:updateDevice");
 
-        if(this.device.isPortrait) {
+        if(this.device.orientation == CONST.ORIENTATIONS.PORTRAIT) {
             this.device.setPortrait();
-            // Calc available height
-            document.querySelector("#device").style.transform = "scale(0.32)";
         }
         else{
             this.device.setLandscape();
-            // Calc available height
-            document.querySelector("#device").style.transform = "scale(0.32)";
         }
+
+        // Calc available width/height
+        document.querySelector("#device").style.transform = "scale(0.32)";
     }
 
     rotateDevice(){
         console.info("ViewController:rotateDevice");
-        this.device.isPortrait = !this.device.isPortrait;
+        this.device.orientation = !this.device.isPortrait;
         this.updateDevice();
     }
 
-    loadApp(sourceFile){
-        console.info("SelectController:loadApp - prepare to load url", sourceFile);
-
-        let app = new App();
-        app.createFromUrl(sourceFile);
-
-        // Set app as last recent in storage
-        this._StorageService.set(CONST.STORAGE.LAST_APP, app);
+    loadApp(url){
+        console.info("SelectController:loadApp", url);
 
         let display = document.querySelector("#display");
         const loadFrame = () => {
             console.log("loadFrame");
             display.removeEventListener("dom-ready", loadFrame);
-            display.loadURL(`file://${app.full}`, {
+            display.loadURL(`file://${url}`, {
                 userAgent : this.device.userAgent
             });
             display.getWebContents().enableDeviceEmulation({
-                screenPosition : this.device.type,
+                screenPosition : "mobile",
             });
         };
         display.addEventListener("dom-ready", loadFrame);
-
-        return app;
     }
 }
-ViewController.$inject = ["DevicesService", "StorageService", "$q", "device"];
+ViewController.$inject = ["DevicesService", "StorageService", "$q", "app"];
 
 module.exports = ViewController;

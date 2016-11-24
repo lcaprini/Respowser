@@ -9,35 +9,33 @@ class App {
         // Name
         this.name = "My app";
 
-        // Main index file
-        this.index       = "index.html";
-        // Parent folder
-        this.folder      = "www";
-        // Directory path
-        this.path        = "./www";
         // Complete url
-        this.url         = "./www/index.html";
-
-        // Orientations settings
-        this.orientation = ORIENTATIONS.PORTRAIT;
-        this.availableOrientations = [
-            ORIENTATIONS.PORTRAIT,
-            ORIENTATIONS.LANDSCAPE
-        ];
+        this.url         = "/www/index.html";
 
         // Device settings
-        this.model = "iPhone 6s";
-        this.type = DEVICES.TYPES.SMARTPHONE;
-        this.availableTypes = [
-            DEVICES.TYPES.SMARTPHONE,
-            DEVICES.TYPES.TABLET
-        ];
-        this.os = DEVICES.OSS.IOS;
-        this.availableOSs = [
-            DEVICES.OSS.IOS,
-            DEVICES.OSS.ANDROID,
-            DEVICES.OSS.WINDOWS
-        ];
+        this.lastDevice = {
+            model : "iPhone 6s",
+            type : DEVICES.TYPES.SMARTPHONE,
+            os : DEVICES.OSS.IOS,
+            orientation : ORIENTATIONS.PORTRAIT
+        };
+
+        // Compatibility settings
+        this.compatibility = {
+            orientation : [
+                ORIENTATIONS.PORTRAIT,
+                ORIENTATIONS.LANDSCAPE
+            ],
+            type : [
+                DEVICES.TYPES.SMARTPHONE,
+                DEVICES.TYPES.TABLET
+            ],
+            os : [
+                DEVICES.OSS.IOS,
+                DEVICES.OSS.ANDROID,
+                DEVICES.OSS.WINDOWS
+            ]
+        }
     }
 
     createFromUrl(url){

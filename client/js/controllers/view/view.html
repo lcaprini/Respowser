@@ -1,25 +1,25 @@
 
 
-<md-toolbar class="md-menu-toolbar">
+<md-toolbar>
     <ng-include src="'js/controllers/toolbar/toolbar.html'"></ng-include>
 </md-toolbar>
 
 <md-content flex layout="row" id="content">
 
     <md-list id="deviceList">
-        <div class="md-accordion" ng-repeat="(type, list) in $ctrl.devicesList track by $index">
-            <md-toolbar class="mini-toolbar" ng-init="$ctrl.acc[type].expanded = ($index == 0)"
-                        ng-click="$ctrl.acc[type].expanded = !$ctrl.acc[type].expanded">
+        <div class="md-accordion" ng-repeat="(type, list) in $ctrl.devicesList | groupBy: 'type' track by $index">
+            <md-toolbar class="mini-toolbar" ng-init="$ctrl.accordion[type].expanded = ($index == 0)"
+                        ng-click="$ctrl.accordion[type].expanded = !$ctrl.accordion[type].expanded">
                 <div class="md-toolbar-tools">
-                    {{type}}
+                    <span>{{type}}</span>
                     <span flex></span>
                     <md-icon md-svg-icon="arrow_right"
-                             ng-class="{'expanded' : $ctrl.acc[type].expanded}"></md-icon>
+                             ng-class="{'expanded' : $ctrl.accordion[type].expanded}"></md-icon>
                 </div>
             </md-toolbar>
-            <div class="dataContent" ng-class="{activeContent:$ctrl.acc[type].expanded}">
+            <div class="dataContent" ng-class="{activeContent : $ctrl.accordion[type].expanded}">
                 <md-list>
-                    <md-list-item ng-repeat="device in list" ng-click="$ctrl.setDevice(device)">
+                    <md-list-item ng-repeat="device in list track by device.model" ng-click="$ctrl.setDevice(device)">
 
                         <div class="device" layout="column" layout-align="center center">
                             <md-icon class="badge" md-svg-icon="check_circle"
@@ -35,7 +35,7 @@
     </md-list>
 
     <div id="deviceContainer">
-        <div id="device" ng-class="{'landscape':$ctrl.device.isLandscape}">
+        <div id="device" ng-class="{'landscape' : $ctrl.device.orientation == $ctrl.ORIENTATIONS.LANDSCAPE}">
 
             <img id="frame"
                  ng-style="$ctrl.device.frameStyle"

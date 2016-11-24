@@ -1,10 +1,13 @@
 
+const ORIENTATIONS = require("core/constants").ORIENTATIONS;
+
 class Device {
 
-    constructor(device){
+    constructor(device, orientation = ORIENTATIONS.PORTRAIT){
         this.model = device.model;
         this.userAgent = device.userAgent;
         this.type = device.type;
+        this.os = device.os;
         this.thumb = device.thumb;
         this.frame = {
             image : device.frame.image,
@@ -31,8 +34,7 @@ class Device {
             top : "0px",
             left : "0px"
         };
-        this.isPortrait = device.isPortrait || true;
-        this.isLandscape = !this.isPortrait;
+        this.orientation = orientation;
     }
 
     setPortrait(){
@@ -47,8 +49,7 @@ class Device {
             top : `${this.frame.top}px`,
             left : `${this.frame.left}px`
         };
-        this.isPortrait = true;
-        this.isLandscape = !this.isPortrait;
+        this.orientation = ORIENTATIONS.PORTRAIT;
     }
 
     setLandscape(){
@@ -63,8 +64,7 @@ class Device {
             top : `${this.frame.left}px`,
             left : `${this.frame.bottom}px`
         };
-        this.isPortrait = false;
-        this.isLandscape = !this.isPortrait;
+        this.orientation = ORIENTATIONS.LANDSCAPE;
     }
 }
 

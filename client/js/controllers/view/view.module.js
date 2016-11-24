@@ -1,6 +1,6 @@
 
 const Controller = require("./view.controller");
-const Device = require("core/device");
+const CONST = require("core/constants");
 
 function router($routeProvider){
     $routeProvider
@@ -9,11 +9,11 @@ function router($routeProvider){
             controller   : Controller,
             controllerAs : "$ctrl",
             resolve      : {
-                device : [
-                    "DevicesService",
-                    (DevicesService) => {
+                app : [
+                    "StorageService",
+                    (StorageService) => {
                         // Get last used device
-                        return DevicesService.getLastDevice();
+                        return StorageService.get(CONST.STORAGE.DEFAULT_APP);
                 }]
             }
         }

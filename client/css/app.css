@@ -33,18 +33,16 @@ body {
     padding-bottom: 5px;
     display: block; }
 
-md-toolbar {
-  background-color: #3f51b5; }
-  md-toolbar md-toolbar-filler {
-    width: 100px; }
-    md-toolbar md-toolbar-filler md-icon {
-      width: 30px;
-      height: 30px; }
-  md-toolbar h2 {
-    line-height: 1rem;
-    height: auto;
-    padding: 21px;
-    color: white; }
+md-toolbar md-toolbar-filler {
+  width: 100px; }
+  md-toolbar md-toolbar-filler md-icon {
+    width: 30px;
+    height: 30px; }
+md-toolbar h2 {
+  line-height: 1rem;
+  height: auto;
+  padding: 21px;
+  color: white; }
 
 #select md-card {
   width: 500px; }
@@ -70,7 +68,9 @@ md-toolbar {
     color: #ffffff;
     background-color: #2196F3; }
     #deviceList .md-accordion .mini-toolbar .md-toolbar-tools {
-      font-size: 15px; }
+      font-size: 12px;
+      padding-left: 5px;
+      padding-right: 0; }
       #deviceList .md-accordion .mini-toolbar .md-toolbar-tools svg {
         fill: #ffffff; }
   #deviceList .md-accordion .dataContent md-list {
