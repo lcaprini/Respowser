@@ -1,55 +1,34 @@
 
 
-<md-toolbar>
-    <ng-include src="'js/controllers/toolbar/toolbar.html'"></ng-include>
+<md-toolbar id="header">
+    <ng-include src="'js/controllers/view/header/header.html'"></ng-include>
 </md-toolbar>
 
-<md-content flex layout="row" id="content">
+<md-content flex layout="row" id="container">
 
     <md-list id="deviceList">
-        <div class="md-accordion" ng-repeat="(type, list) in $ctrl.devicesList | groupBy: 'type' track by $index">
-            <md-toolbar class="mini-toolbar" ng-init="$ctrl.accordion[type].expanded = ($index == 0)"
-                        ng-click="$ctrl.accordion[type].expanded = !$ctrl.accordion[type].expanded">
-                <div class="md-toolbar-tools">
-                    <span>{{type}}</span>
-                    <span flex></span>
-                    <md-icon md-svg-icon="arrow_down"
-                             ng-class="{'expanded' : $ctrl.accordion[type].expanded}"></md-icon>
-                </div>
-            </md-toolbar>
-            <div class="dataContent" ng-class="{activeContent : $ctrl.accordion[type].expanded}">
-                <md-list>
-                    <md-list-item ng-repeat="device in list track by device.model" ng-click="$ctrl.setDevice(device)">
-
-                        <div class="device" layout="column" layout-align="center center">
-                            <md-icon class="badge" md-svg-icon="check_circle"
-                                     ng-show="device.model == $ctrl.device.model"></md-icon>
-                            <img ng-src="devices/thumbs/{{device.thumb}}">
-                            <label>{{device.model}}</label>
-                        </div>
-                    </md-list-item>
-                </md-list>
-            </div>
-        </div>
+        <ng-include src="'js/controllers/view/deviceList/deviceList.html'"></ng-include>
     </md-list>
 
     <div id="mainContainer" flex layout="column">
+        <md-toolbar id="toolbar" class="mini-toolbar">
+            <ng-include src="'js/controllers/view/toolbar/toolbar.html'"></ng-include>
+        </md-toolbar>
 
-    </div>
+        <div id="deviceContainer">
+            <div id="device" ng-class="{'landscape' : $ctrl.device.orientation == $ctrl.ORIENTATIONS.LANDSCAPE}">
 
-    <div id="deviceContainer">
-        <div id="device" ng-class="{'landscape' : $ctrl.device.orientation == $ctrl.ORIENTATIONS.LANDSCAPE}">
+                <img id="frame"
+                     ng-style="$ctrl.device.frameStyle"
+                     ng-src="devices/frames/{{$ctrl.device.frame.image}}" />
 
-            <img id="frame"
-                 ng-style="$ctrl.device.frameStyle"
-                 ng-src="devices/frames/{{$ctrl.device.frame.image}}" />
+                <webview id="display"
+                         src="default.html"
+                         ng-style="$ctrl.device.displayStyle">
 
-            <webview id="display"
-                     src="default.html"
-                     ng-style="$ctrl.device.displayStyle">
+                </webview>
 
-            </webview>
-
+            </div>
         </div>
     </div>
 

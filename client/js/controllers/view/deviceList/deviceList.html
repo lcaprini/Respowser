@@ -1,0 +1,25 @@
+
+<div class="md-accordion" ng-repeat="(type, list) in $ctrl.devicesList | groupBy: 'type' track by $index">
+    <md-toolbar class="mini-toolbar" ng-init="$ctrl.accordion[type].expanded = ($index == 0)"
+                ng-click="$ctrl.accordion[type].expanded = !$ctrl.accordion[type].expanded">
+        <div class="md-toolbar-tools">
+            <span>{{type}}</span>
+            <span flex></span>
+            <md-icon md-svg-icon="arrow_down"
+                     ng-class="{'expanded' : $ctrl.accordion[type].expanded}"></md-icon>
+        </div>
+    </md-toolbar>
+    <div class="dataContent" ng-class="{activeContent : $ctrl.accordion[type].expanded}">
+        <md-list>
+            <md-list-item ng-repeat="device in list track by device.model" ng-click="$ctrl.setDevice(device)">
+
+                <div class="device" layout="column" layout-align="center center">
+                    <md-icon class="badge" md-svg-icon="check_circle"
+                             ng-show="device.model == $ctrl.device.model"></md-icon>
+                    <img ng-src="devices/thumbs/{{device.thumb}}">
+                    <label>{{device.model}}</label>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>

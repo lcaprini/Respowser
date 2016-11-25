@@ -1,0 +1,58 @@
+
+#deviceList {
+    background: #d6edff;
+    width: 100px !important;
+    min-width: 100px;
+    padding: 0;
+    
+    .md-accordion {
+        
+        .mini-toolbar {
+            min-height: 30px;
+            height: 30px;
+            color: #ffffff;
+            background-color: #2196F3;
+            
+            .md-toolbar-tools {
+                font-size: 12px;
+                padding-left: 5px;
+                padding-right: 0;
+                
+                svg {
+                    fill: #ffffff;
+                }
+            }
+        }
+        .dataContent {
+            md-list {
+                padding: 0;
+                
+                md-list-item {
+                    
+                    .device {
+                        padding-top: 5px;
+                        
+                        md-icon.badge {
+                            position: absolute;
+                            top: 5px;
+                            right: 15px;
+                            
+                            svg {
+                                fill: #4CAF50;
+                                background: white;
+                                border-radius: 50%;
+                            }
+                        }
+                        img {
+                            width: 70%;
+                            margin: 0 auto;
+                        }
+                        label {
+                            line-height: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

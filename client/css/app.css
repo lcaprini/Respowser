@@ -34,18 +34,6 @@ body {
     padding-bottom: 5px;
     display: block; }
 
-md-toolbar md-toolbar-filler {
-  width: 100px; }
-  md-toolbar md-toolbar-filler md-icon {
-    width: 30px;
-    height: 30px; }
-
-md-toolbar h3 {
-  line-height: 1rem;
-  margin: 0;
-  padding: 21px;
-  color: white; }
-
 #select md-card {
   width: 500px; }
   #select md-card md-card-content button {
@@ -58,6 +46,18 @@ md-toolbar h3 {
       position: absolute;
       right: 0;
       top: 0; }
+
+md-toolbar#header md-toolbar-filler {
+  width: 100px; }
+  md-toolbar#header md-toolbar-filler md-icon {
+    width: 30px;
+    height: 30px; }
+
+md-toolbar#header h3 {
+  line-height: 1rem;
+  margin: 0;
+  padding: 21px;
+  color: white; }
 
 #deviceList {
   background: #d6edff;
@@ -93,10 +93,15 @@ md-toolbar h3 {
       #deviceList .md-accordion .dataContent md-list md-list-item .device label {
         line-height: 20px; }
 
+md-toolbar#toolbar {
+  color: red; }
+
+#container #mainContainer {
+  width: 100%;
+  height: 100%; }
+
 #deviceContainer {
   padding: 60px;
-  width: 100%;
-  height: 100%;
   box-sizing: border-box;
   overflow: hidden; }
   #deviceContainer #device {
