@@ -23,17 +23,45 @@
         },
         {
             "model": "Nexus 5X",
+            "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
             "type": "smartphone",
-            "width": 412,
-            "height": 732,
-            "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36"
+            "os" : "android",
+            "thumb": "nexus-5x.png",
+            "frame": {
+                "image": "nexus-5x.png",
+                "width": 1195,
+                "height": 2406,
+                "top": 232,
+                "right": 60,
+                "bottom": 254,
+                "left": 53
+            },
+            "display": {
+                "width": 411,
+                "height": 731,
+                "ratio": 2.62773723
+            }
         },
         {
             "model": "iPad Air 2",
+            "userAgent": "Mozilla/5.0 (iPad; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
             "type": "tablet",
-            "width": 375,
-            "height": 667,
-            "serAgent": "Mozilla/5.0 (iPad; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
+            "os" : "ios",
+            "thumb": "apple-ipad-air-2.png",
+            "frame": {
+                "image": "apple-ipad-air-2.png",
+                "width": 1763,
+                "height": 2496,
+                "top": 224,
+                "right": 111,
+                "bottom": 224,
+                "left": 111
+            },
+            "display": {
+                "width": 768,
+                "height": 1024,
+                "ratio": 2
+            }
         }
     ]
 }

@@ -1,3 +1,13 @@
-<div>
-    Questa è una toolbar
-</div>
+
+<md-button title="Apri" class="md-icon-button md-primary" ng-if="$ctrl.canOpenApp">
+    <md-icon md-svg-icon="folder_open"></md-icon>
+</md-button>
+
+<span flex></span>
+
+<md-button title="Ruota dispositivo" class="md-icon-button md-primary" ng-if="$ctrl.canRotateDevice">
+    <md-icon md-svg-icon="screen_rotation" ng-click="$ctrl.rotateDevice()"></md-icon>
+</md-button>
+<!--<md-button title="Screenshot" class="md-icon-button md-primary">-->
+    <!--<md-icon md-svg-icon="photo_camera" ng-click="$ctrl.screenshot()"></md-icon>-->
+<!--</md-button>-->

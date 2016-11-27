@@ -1,6 +1,6 @@
 
-<div class="md-accordion" ng-repeat="(type, list) in $ctrl.devicesList | groupBy: 'type' track by $index">
-    <md-toolbar class="mini-toolbar" ng-init="$ctrl.accordion[type].expanded = ($index == 0)"
+<div class="md-accordion" ng-class="type" ng-repeat="(type, list) in $ctrl.devicesList | groupBy: 'type' track by $index">
+    <md-toolbar class="mini-toolbar" ng-init="$ctrl.accordion[type].expanded = true"
                 ng-click="$ctrl.accordion[type].expanded = !$ctrl.accordion[type].expanded">
         <div class="md-toolbar-tools">
             <span>{{type}}</span>

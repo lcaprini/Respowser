@@ -1,19 +1,17 @@
 
 
-<md-toolbar id="header">
-    <ng-include src="'js/controllers/view/header/header.html'"></ng-include>
-</md-toolbar>
+<md-toolbar id="header" ng-include="'js/controllers/view/header/header.html'"></md-toolbar>
 
 <md-content flex layout="row" id="container">
 
-    <md-list id="deviceList">
-        <ng-include src="'js/controllers/view/deviceList/deviceList.html'"></ng-include>
-    </md-list>
+    <!-- md-list #deviceList-->
+    <md-list id="deviceList" ng-include="'js/controllers/view/deviceList/deviceList.html'"></md-list>
 
     <div id="mainContainer" flex layout="column">
-        <md-toolbar id="toolbar" class="mini-toolbar">
-            <ng-include src="'js/controllers/view/toolbar/toolbar.html'"></ng-include>
-        </md-toolbar>
+
+        <!-- md-toolbar #toolbar-->
+        <md-toolbar id="toolbar" class="mini-toolbar" layout="row" layout-align="start center"
+                    ng-include="'js/controllers/view/toolbar/toolbar.html'"></md-toolbar>
 
         <div id="deviceContainer">
             <div id="device" ng-class="{'landscape' : $ctrl.device.orientation == $ctrl.ORIENTATIONS.LANDSCAPE}">

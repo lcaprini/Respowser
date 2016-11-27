@@ -1,11 +1,18 @@
 
 #deviceList {
     background: #d6edff;
+    border-right: 3px solid #2196F3;
     width: 100px !important;
     min-width: 100px;
     padding: 0;
     
     .md-accordion {
+        
+        &.tablet {
+            md-list-item .md-button {
+                padding: 0;
+            }
+        }
         
         .mini-toolbar {
             min-height: 30px;

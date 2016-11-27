@@ -4,7 +4,7 @@ const config = {
         width: 1400,
         height: 900
     },
-    selectMode : true
+    canOpenOtherApp : false
 };
 
 module.exports = config;

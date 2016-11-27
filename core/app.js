@@ -7,7 +7,8 @@ class App {
 
     constructor(){
         // Name
-        this.name = "My app";
+        // this.name = "My app";
+        this.name = "trasfERte";
 
         // Complete url
         this.url         = "/www/index.html";
@@ -22,18 +23,18 @@ class App {
 
         // Compatibility settings
         this.compatibility = {
-            orientation : [
+            orientations : [
                 ORIENTATIONS.PORTRAIT,
-                ORIENTATIONS.LANDSCAPE
+                // ORIENTATIONS.LANDSCAPE
             ],
-            type : [
+            types : [
                 DEVICES.TYPES.SMARTPHONE,
-                DEVICES.TYPES.TABLET
+                // DEVICES.TYPES.TABLET
             ],
-            os : [
+            oss : [
                 DEVICES.OSS.IOS,
                 DEVICES.OSS.ANDROID,
-                DEVICES.OSS.WINDOWS
+                // DEVICES.OSS.WINDOWS
             ]
         }
     }

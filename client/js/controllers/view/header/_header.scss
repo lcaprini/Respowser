@@ -1,5 +1,7 @@
 
-md-toolbar#header {
+#header {
+    height: 55px !important;
+    min-height: 55px !important;
     
     md-toolbar-filler {
         width: 100px;
@@ -15,5 +17,6 @@ md-toolbar#header {
         margin: 0;
         padding: 21px;
         color: white;
+        padding-left: 0;
     }
 }

@@ -11,7 +11,7 @@
 }
 
 #deviceContainer {
-    padding: 60px;
+    padding: 30px;
     box-sizing: border-box;
     overflow: hidden;
 
@@ -27,6 +27,7 @@
         #display {
             transform-origin: top left;
             position: absolute;
+            //transition: all ease 0.5s;
         }
     }
     
