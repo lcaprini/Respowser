@@ -10,14 +10,68 @@
                 "image": "apple-iphone-6s.png",
                 "width": 871,
                 "height": 1777,
-                "top": 228,
-                "right": 60,
-                "bottom": 215,
-                "left": 61
+                "portraitMargin" : {
+                    "top": 228,
+                    "left" : 61
+                },
+                "landscapeMargin" : {
+                    "top" : 61,
+                    "left" : 215
+                }
             },
             "display": {
                 "width": 375,
                 "height": 667,
+                "ratio": 2
+            }
+        },
+        {
+            "model": "iPhone 6s Plus",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+            "type": "smartphone",
+            "os" : "ios",
+            "thumb": "apple-iphone-6s-plus.png",
+            "frame": {
+                "image": "apple-iphone-6s-plus.png",
+                "width": 1446,
+                "height": 2948,
+                "portraitMargin" : {
+                    "top": 379,
+                    "left" : 102
+                },
+                "landscapeMargin" : {
+                    "top" : 102,
+                    "left" : 358
+                }
+            },
+            "display": {
+                "width": 414,
+                "height": 736,
+                "ratio": 3
+            }
+        },
+        {
+            "model": "iPhone 5s",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+            "type": "smartphone",
+            "os" : "ios",
+            "thumb": "apple-iphone-5s.png",
+            "frame": {
+                "image": "apple-iphone-5s.png",
+                "width": 760,
+                "height": 1597,
+                "portraitMargin" : {
+                    "top": 238,
+                    "left" : 64
+                },
+                "landscapeMargin" : {
+                    "top" : 64,
+                    "left" : 223
+                }
+            },
+            "display": {
+                "width": 320,
+                "height": 568,
                 "ratio": 2
             }
         },
@@ -31,10 +85,14 @@
                 "image": "nexus-5x.png",
                 "width": 1195,
                 "height": 2406,
-                "top": 230,
-                "right": 60,
-                "bottom": 254,
-                "left": 53
+                "portraitMargin" : {
+                    "top": 230,
+                    "left" : 53
+                },
+                "landscapeMargin" : {
+                    "top" : 53,
+                    "left" : 254
+                }
             },
             "display": {
                 "width": 411,
@@ -52,10 +110,14 @@
                 "image": "apple-ipad-air-2.png",
                 "width": 1763,
                 "height": 2496,
-                "top": 224,
-                "right": 111,
-                "bottom": 224,
-                "left": 111
+                "portraitMargin" : {
+                    "top": 224,
+                    "left" : 111
+                },
+                "landscapeMargin" : {
+                    "top" : 111,
+                    "left" : 224
+                }
             },
             "display": {
                 "width": 768,

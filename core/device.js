@@ -13,10 +13,14 @@ class Device {
             image : device.frame.image,
             width : device.frame.width,
             height : device.frame.height,
-            top : device.frame.top,
-            right : device.frame.right,
-            bottom : device.frame.bottom,
-            left : device.frame.left,
+            portraitMargin : {
+                top: device.frame.portraitMargin.top,
+                left : device.frame.portraitMargin.left
+            },
+            landscapeMargin : {
+                top : device.frame.landscapeMargin.top,
+                left : device.frame.landscapeMargin.left
+            }
         };
         this.frameStyle = {
             width: "0px",
@@ -46,8 +50,8 @@ class Device {
             width : `${this.display.width}px`,
             height : `${this.display.height}px`,
             transform : `scale(${this.display.ratio})`,
-            top : `${this.frame.top}px`,
-            left : `${this.frame.left}px`
+            top : `${this.frame.portraitMargin.top}px`,
+            left : `${this.frame.portraitMargin.left}px`
         };
         this.orientation = ORIENTATIONS.PORTRAIT;
     }
@@ -61,8 +65,8 @@ class Device {
             width : `${this.display.height}px`,
             height : `${this.display.width}px`,
             transform : `scale(${this.display.ratio})`,
-            top : `${this.frame.left}px`,
-            left : `${this.frame.bottom}px`
+            top : `${this.frame.landscapeMargin.top}px`,
+            left : `${this.frame.landscapeMargin.left}px`
         };
         this.orientation = ORIENTATIONS.LANDSCAPE;
     }
