@@ -6,12 +6,13 @@ const _ = require("lodash");
 
 class ViewController{
 
-    constructor(DevicesService, StorageService, $q, app){
+    constructor(DevicesService, StorageService, $q, app, $timeout){
         console.info("ViewController:constructor");
         this.DevicesService = DevicesService;
         this.StorageService = StorageService;
         this.app = app;
         this.$q = $q;
+        this.$timeout = $timeout;
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
         this.canOpenApp = config.canOpenOtherApp;
@@ -21,6 +22,13 @@ class ViewController{
 
         // Initialize default app
         this.initDefaultApp();
+
+        let that = this;
+        window.addEventListener('resize', function(e){
+            e.preventDefault();
+            that.$timeout(function(){
+            }, 1);
+        })
     }
 
     initDefaultApp(){
@@ -35,6 +43,26 @@ class ViewController{
         this.loadApp(path + this.app.url);
     }
 
+    dynamicScale(){
+        let containerStyle = window.getComputedStyle(document.getElementById('deviceContainer'), null);
+        let scale = 1;
+
+        if(this.device.orientation == CONST.ORIENTATIONS.PORTRAIT) {
+            let containerHeight = parseInt(containerStyle.height) - parseInt(containerStyle.paddingTop) - parseInt(containerStyle.paddingBottom);
+            scale = containerHeight / this.device.frame.height;
+        }
+        else{
+            let containerWidth = parseInt(containerStyle.width) - parseInt(containerStyle.paddingLeft) - parseInt(containerStyle.paddingRight);
+            scale = containerWidth / this.device.frame.height;
+        }
+
+        if(scale > 1){
+            scale = 1.0;
+        }
+
+        return {transform : `scale(${scale})`};
+    }
+
     updateDeviceOrientation(){
         console.info("ViewController:updateDeviceOrientation");
 
@@ -44,9 +72,6 @@ class ViewController{
         else{
             this.device.setLandscape();
         }
-
-        // Calc available width/height
-        document.querySelector("#device").style.transform = "scale(0.32)";
     }
 
     rotateDevice(){
@@ -95,6 +120,6 @@ class ViewController{
     }
 
 }
-ViewController.$inject = ["DevicesService", "StorageService", "$q", "app"];
+ViewController.$inject = ["DevicesService", "StorageService", "$q", "app", "$timeout"];
 
 module.exports = ViewController;

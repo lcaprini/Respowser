@@ -1,6 +1,7 @@
 
 <div class="md-accordion" ng-class="type" ng-repeat="(type, list) in $ctrl.devicesList | groupBy: 'type' track by $index">
     <md-toolbar class="mini-toolbar" ng-init="$ctrl.accordion[type].expanded = true"
+                ng-if="$ctrl.app.compatibility.types.indexOf(type) > -1"
                 ng-click="$ctrl.accordion[type].expanded = !$ctrl.accordion[type].expanded">
         <div class="md-toolbar-tools">
             <span>{{type}}</span>
@@ -11,7 +12,9 @@
     </md-toolbar>
     <div class="dataContent" ng-class="{activeContent : $ctrl.accordion[type].expanded}">
         <md-list>
-            <md-list-item ng-repeat="device in list track by device.model" ng-click="$ctrl.setDevice(device)">
+            <md-list-item ng-repeat="device in list track by device.model"
+                          ng-click="$ctrl.setDevice(device)"
+                          ng-if="$ctrl.app.compatibility.oss.indexOf(device.os) > -1">
 
                 <div class="device" layout="column" layout-align="center center">
                     <md-icon class="badge" md-svg-icon="check_circle"
