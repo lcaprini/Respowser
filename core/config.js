@@ -4,7 +4,7 @@ const config = {
         width: 1400,
         height: 900
     },
-    canOpenOtherApp : false
+    singleApp : true
 };
 
 module.exports = config;

@@ -1,17 +1,17 @@
 
 
-<md-toolbar id="header" ng-include="'js/controllers/view/header/header.html'"></md-toolbar>
+<md-toolbar id="header" ng-include="'controllers/view/header/header.html'"></md-toolbar>
 
 <md-content flex layout="row" id="container">
 
     <!-- md-list #deviceList-->
-    <md-list id="deviceList" ng-include="'js/controllers/view/deviceList/deviceList.html'"></md-list>
+    <md-list id="deviceList" ng-include="'controllers/view/deviceList/deviceList.html'"></md-list>
 
     <div id="mainContainer" flex layout="column">
 
         <!-- md-toolbar #toolbar-->
         <md-toolbar id="toolbar" class="mini-toolbar" layout="row" layout-align="start center"
-                    ng-include="'js/controllers/view/toolbar/toolbar.html'"></md-toolbar>
+                    ng-include="'controllers/view/toolbar/toolbar.html'"></md-toolbar>
 
         <div id="deviceContainer">
             <div id="device"

@@ -15,7 +15,7 @@ class ViewController{
         this.$timeout = $timeout;
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
-        this.canOpenApp = config.canOpenOtherApp;
+        this.canOpenApp = !config.singleApp;
 
         // Get the list of all available devices
         this.devicesList = this.DevicesService.getDevices();

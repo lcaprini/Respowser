@@ -6,7 +6,7 @@ require("angular-filter");
 
 // Initialize appModules
 const appName = "Respowser";
-const ControllersModule = require("./controllers/controllers.module");
+const ControllersModule = require("../controllers/controllers.module");
 const ServicesModule = require("./services/services.module.js");
 const ModulesModule = require("./modules/modules.module.js");
 const FiltersModule = require("./filters/filters.module");
