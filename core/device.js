@@ -3,6 +3,11 @@ const ORIENTATIONS = require("core/constants").ORIENTATIONS;
 
 class Device {
 
+    /**
+     * Initialize Device form list's infos and orientation
+     * @param device
+     * @param orientation
+     */
     constructor(device, orientation = ORIENTATIONS.PORTRAIT){
         this.model = device.model;
         this.userAgent = device.userAgent;
@@ -41,6 +46,33 @@ class Device {
         this.orientation = orientation;
     }
 
+    /**
+     * Dynamically calculate device container scale factor, using #deviceContainer size in DOM
+     * @returns {{transform: string}}
+     */
+    calcDynamicScale(){
+        let containerStyle = window.getComputedStyle(document.getElementById('deviceContainer'), null);
+        let scale = 1;
+
+        if(this.orientation == ORIENTATIONS.PORTRAIT) {
+            let containerHeight = parseInt(containerStyle.height) - parseInt(containerStyle.paddingTop) - parseInt(containerStyle.paddingBottom);
+            scale = containerHeight / this.frame.height;
+        }
+        else{
+            let containerWidth = parseInt(containerStyle.width) - parseInt(containerStyle.paddingLeft) - parseInt(containerStyle.paddingRight);
+            scale = containerWidth / this.frame.height;
+        }
+
+        if(scale > 1){
+            scale = 1.0;
+        }
+
+        return {transform : `scale(${scale})`};
+    }
+
+    /**
+     * Set frame and display in portrait mode
+     */
     setPortrait(){
         this.frameStyle = {
             width : `${this.frame.width}px`,
@@ -56,6 +88,9 @@ class Device {
         this.orientation = ORIENTATIONS.PORTRAIT;
     }
 
+    /**
+     * Set frame and display in landscape mode
+     */
     setLandscape(){
         this.frameStyle = {
             width : `${this.frame.width}px`,
@@ -69,6 +104,32 @@ class Device {
             left : `${this.frame.landscapeMargin.left}px`
         };
         this.orientation = ORIENTATIONS.LANDSCAPE;
+    }
+
+    /**
+     * Load device frame and display consider device's orientation
+     */
+    load(){
+        if(this.orientation == ORIENTATIONS.PORTRAIT) {
+            this.setPortrait();
+        }
+        else{
+            this.setLandscape();
+        }
+    }
+
+    /**
+     * Rotate device
+     */
+    rotate(){
+        if(this.orientation == ORIENTATIONS.PORTRAIT){
+            this.orientation = ORIENTATIONS.LANDSCAPE;
+            this.setLandscape();
+        }
+        else {
+            this.orientation = ORIENTATIONS.PORTRAIT;
+            this.setPortrait();
+        }
     }
 }
 

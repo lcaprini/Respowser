@@ -16,7 +16,7 @@
         <div id="deviceContainer">
             <div id="device"
                  ng-class="{'landscape' : $ctrl.device.orientation == $ctrl.ORIENTATIONS.LANDSCAPE}"
-                 ng-style="$ctrl.dynamicScale()">
+                 ng-style="$ctrl.device.calcDynamicScale()">
 
                 <img id="frame"
                      ng-style="$ctrl.device.frameStyle"

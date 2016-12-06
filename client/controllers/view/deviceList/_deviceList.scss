@@ -1,10 +1,11 @@
 
 #deviceList {
     background: #d6edff;
-    border-right: 3px solid #2196F3;
     width: 100px !important;
     min-width: 100px;
     padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
     
     .md-accordion {
         
@@ -38,6 +39,7 @@
                     
                     .device {
                         padding-top: 5px;
+                        text-align: center;
                         
                         md-icon.badge {
                             position: absolute;
@@ -62,4 +64,18 @@
             }
         }
     }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #2196f3;
+    border: 1px solid #6cbaf8;;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2196f3;
 }

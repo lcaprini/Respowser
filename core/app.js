@@ -1,5 +1,6 @@
 
 const path = require("path");
+const STORAGE = require("core/constants").STORAGE;
 const ORIENTATIONS = require("core/constants").ORIENTATIONS;
 const DEVICES = require("core/constants").DEVICES;
 
@@ -7,17 +8,14 @@ class App {
 
     constructor(){
         // Name
-        // this.name = "My app";
-        this.name = "trasfERte";
+        this.name = STORAGE.DEFAULT_APP;
 
         // Complete url
-        this.url         = "/www/index.html";
+        this.url = "/www/index.html";
 
         // Device settings
         this.lastDevice = {
             model : "iPhone 6s",
-            type : DEVICES.TYPES.SMARTPHONE,
-            os : DEVICES.OSS.IOS,
             orientation : ORIENTATIONS.PORTRAIT
         };
 
@@ -25,17 +23,33 @@ class App {
         this.compatibility = {
             orientations : [
                 ORIENTATIONS.PORTRAIT,
-                // ORIENTATIONS.LANDSCAPE
+                ORIENTATIONS.LANDSCAPE
             ],
             types : [
                 DEVICES.TYPES.SMARTPHONE,
-                // DEVICES.TYPES.TABLET
+                DEVICES.TYPES.TABLET
             ],
             oss : [
                 DEVICES.OSS.IOS,
                 DEVICES.OSS.ANDROID,
                 // DEVICES.OSS.WINDOWS
             ]
+        }
+    }
+
+    createFromStorage(app){
+        this.name = app.name;
+        this.url = app.url;
+        this.lastDevice = app.lastDevice;
+        this.compatibility = app.compatibility;
+
+        return this;
+    }
+
+    updateDevice(device){
+        this.lastDevice = {
+            model : device.model,
+            orientation : device.orientation
         }
     }
 

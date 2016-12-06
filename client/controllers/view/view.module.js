@@ -1,5 +1,6 @@
 
 const Controller = require("./view.controller");
+const App = require("core/app");
 const CONST = require("core/constants");
 
 function router($routeProvider){
@@ -13,7 +14,12 @@ function router($routeProvider){
                     "StorageService",
                     (StorageService) => {
                         // Get last used device
-                        return StorageService.get(CONST.STORAGE.DEFAULT_APP);
+                        let app = new App();
+                        return StorageService.get(CONST.STORAGE.DEFAULT_APP).then(
+                            (default_app) => {
+                                return app.createFromStorage(default_app);
+                            }
+                        );
                 }]
             }
         }

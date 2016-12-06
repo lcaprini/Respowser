@@ -22,6 +22,7 @@
 
 <script type="text/javascript">
     require('app-module-path').addPath(__dirname+"/..");
+    require('electron').remote.getCurrentWindow().removeAllListeners();
     var boot = require(__dirname+'/js/boot.js');
 </script>
 </body>

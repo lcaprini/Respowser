@@ -2,10 +2,9 @@
 module.exports = {
 
     STORAGE: {
-        DEFAULT_APP     : "default-app",
+        DEFAULT_APP     : "trasfERte",
         LAST_APP        : "last-app",
-        RECENTS_APP     : "recent-apps",
-        LAST_DEVICE     : "last-device"
+        RECENTS_APP     : "recent-apps"
     },
 
     ORIENTATIONS: {

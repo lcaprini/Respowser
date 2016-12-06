@@ -4,7 +4,7 @@ const config = {
         width: 1400,
         height: 900
     },
-    singleApp : true
+    singleApp : false
 };
 
 module.exports = config;
