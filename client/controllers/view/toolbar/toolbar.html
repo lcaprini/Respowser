@@ -1,4 +1,8 @@
 
+<md-button title="Apri app" class="md-icon-button md-primary" ng-if="$ctrl.canOpenApp">
+    <md-icon md-svg-icon="folder_open" ng-click="$ctrl.openApp()"></md-icon>
+</md-button>
+
 <span class="flex"></span>
 
 <md-button title="Ruota dispositivo" class="md-icon-button md-primary" ng-if="$ctrl.canRotateDevice">

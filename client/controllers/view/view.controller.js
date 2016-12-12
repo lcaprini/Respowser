@@ -1,4 +1,5 @@
 
+const App = require("core/app");
 const Device = require("core/device");
 const CONST = require("core/constants");
 const config = require("core/config");
@@ -56,8 +57,15 @@ class ViewController{
      * Initialize the default app
      */
     initDefaultApp(){
-        var path = require('path').dirname(require.main.filename);
-        this.loadApp(path + this.app.url);
+        let _that = this;
+        var url = require('path').dirname(require.main.filename) + this.app.url;
+
+        let display = document.querySelector("#display");
+        const loadFrame = () => {
+            display.removeEventListener("dom-ready", loadFrame);
+            _that.loadApp(url);
+        };
+        display.addEventListener("dom-ready", loadFrame);
     }
 
     /**
@@ -65,23 +73,18 @@ class ViewController{
      * @param url
      */
     loadApp(url){
-        console.info("SelectController:loadApp", url);
+        console.info("ViewController:loadApp", url);
 
         let display = document.querySelector("#display");
-        const loadFrame = () => {
-            console.log("loadFrame");
-            display.removeEventListener("dom-ready", loadFrame);
-            display.loadURL(`file://${url}`, {
-                userAgent : this.device.userAgent
-            });
-            display.getWebContents().enableDeviceEmulation({
-                screenPosition : "mobile",
-            });
-        };
-        display.addEventListener("dom-ready", loadFrame);
+        display.loadURL(`file://${url}`, {
+            userAgent : this.device.userAgent
+        });
+        display.getWebContents().enableDeviceEmulation({
+            screenPosition : "mobile",
+        });
     }
 
-    openDialog(){
+    openApp(){
         let _that = this;
 
         dialog.showOpenDialog({
@@ -89,8 +92,15 @@ class ViewController{
         },
         (file) => {
             _that.$timeout(() => {
-                if (file && file.length > 0)
-                    _that.sourceFile = file[0];
+                if (file && file.length > 0){
+                    let newApp = new App();
+                    newApp.createFromUrl(file[0]);
+                    _that.initDevice();
+                    _that.loadApp(newApp.url);
+                    _that.$timeout(function(){
+                        _that.app = newApp;
+                    }, 5);
+                }
             }, 10);
         });
     }
