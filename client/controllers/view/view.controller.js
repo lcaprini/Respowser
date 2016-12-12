@@ -96,11 +96,12 @@ class ViewController{
     }
 
     /**
-     * Rotate device ad update info in storage
+     * Rotate device and update info in storage
      */
     rotateDevice(){
         this.device.rotate();
-        this.app.lastDevice.orientation = this.device.orientation;
+        this.app.updateDevice(this.device);
+        this.StorageService.set(this.app.name, this.app);
     }
 
     /**
