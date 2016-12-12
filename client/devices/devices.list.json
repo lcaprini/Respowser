@@ -124,6 +124,81 @@
                 "height": 1024,
                 "ratio": 2
             }
+        },
+        {
+            "model": "iPad Mini 4",
+            "userAgent": "Mozilla/5.0 (iPad; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+            "type": "tablet",
+            "os" : "ios",
+            "thumb": "apple-ipad-mini-4.png",
+            "frame": {
+                "image": "apple-ipad-mini-4.png",
+                "width": 1728,
+                "height": 2604,
+                "portraitMargin" : {
+                    "top": 278,
+                    "left" : 96
+                },
+                "landscapeMargin" : {
+                    "top" : 96,
+                    "left" : 278
+                }
+            },
+            "display": {
+                "width": 768,
+                "height": 1024,
+                "ratio": 2
+            }
+        },
+        {
+            "model": "Nexus 9",
+            "userAgent": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 9 Build/MMB29S) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Safari/537.36",
+            "type": "tablet",
+            "os" : "android",
+            "thumb": "nexus-9.png",
+            "frame": {
+                "image": "nexus-9.png",
+                "width": 1728,
+                "height": 2567,
+                "portraitMargin" : {
+                    "top": 260,
+                    "left" : 96
+                },
+                "landscapeMargin" : {
+                    "top" : 96,
+                    "left" : 259
+                }
+            },
+            "display": {
+                "width": 768,
+                "height": 1024,
+                "ratio": 2
+            }
+        },
+        {
+            "model": "Galaxy Tab S2 9.7",
+            "userAgent": "Mozilla/5.0 (Linux; Android 5.0; SM-T810 Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Safari/537.36",
+            "type": "tablet",
+            "os" : "android",
+            "thumb": "galaxy-tab-s2-97.png",
+            "frame": {
+                "image": "galaxy-tab-s2-97.png",
+                "width": 1760,
+                "height": 2473,
+                "portraitMargin" : {
+                    "top": 214,
+                    "left" : 110
+                },
+                "landscapeMargin" : {
+                    "top" : 111,
+                    "left" : 211
+                }
+            },
+            "display": {
+                "width": 768,
+                "height": 1024,
+                "ratio": 2
+            }
         }
     ]
 }
