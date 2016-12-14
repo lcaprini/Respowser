@@ -39,8 +39,7 @@ class ViewController{
         let that = this;
         window.addEventListener('resize', function(e){
             e.preventDefault();
-            that.$timeout(function(){
-            }, 1);
+            that.$timeout(() => {}, 1);
         })
     }
 
@@ -97,8 +96,10 @@ class ViewController{
                     newApp.createFromUrl(file[0]);
                     _that.initDevice();
                     _that.loadApp(newApp.url);
-                    _that.$timeout(function(){
+                    _that.$timeout(() => {
                         _that.app = newApp;
+                        _that.StorageService.set(_that.app.name, _that.app);
+                        _that.StorageService.unshift(CONST.STORAGE.RECENTS_APP, _that.app.name);
                     }, 5);
                 }
             }, 10);
