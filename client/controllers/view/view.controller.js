@@ -107,6 +107,14 @@ class ViewController{
     }
 
     /**
+     * Refresh app without reload frame
+     */
+    refreshApp(){
+        let display = document.querySelector("#display");
+        display.getWebContents().reload();
+    }
+
+    /**
      * Rotate device and update info in storage
      */
     rotateDevice(){
