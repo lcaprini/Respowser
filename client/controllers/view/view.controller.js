@@ -5,6 +5,8 @@ const CONST = require("core/constants");
 const config = require("core/config");
 const _ = require("lodash");
 const {dialog} = require('electron').remote;
+const fs = require('fs');
+const path = require("path");
 
 class ViewController{
 
@@ -15,14 +17,16 @@ class ViewController{
      * @param $q
      * @param app
      * @param $timeout
+     * @param $mdDialog
      */
-    constructor(DevicesService, StorageService, $q, app, $timeout){
+    constructor(DevicesService, StorageService, $q, app, $timeout, $mdDialog){
         this.DevicesService = DevicesService;
         this.StorageService = StorageService;
-        this.app = app;
-        console.log(app);
         this.$q = $q;
         this.$timeout = $timeout;
+        this.$mdDialog = $mdDialog;
+        this.app = app;
+        console.log(app);
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
         this.canOpenApp = !config.singleApp;
@@ -79,11 +83,11 @@ class ViewController{
             userAgent : this.device.userAgent
         });
         display.getWebContents().enableDeviceEmulation({
-            screenPosition : "mobile",
+            screenPosition : 'mobile',
         });
     }
 
-    openApp(){
+    openApp(ev){
         let _that = this;
 
         dialog.showOpenDialog({
@@ -92,15 +96,44 @@ class ViewController{
         (file) => {
             _that.$timeout(() => {
                 if (file && file.length > 0){
-                    let newApp = new App();
-                    newApp.createFromUrl(file[0]);
-                    _that.initDevice();
-                    _that.loadApp(newApp.url);
-                    _that.$timeout(() => {
-                        _that.app = newApp;
-                        _that.StorageService.set(_that.app.name, _that.app);
-                        _that.StorageService.unshift(CONST.STORAGE.RECENTS_APP, _that.app.name);
-                    }, 5);
+
+                    // Find app configuration, if exists
+                    let splits = file[0].split(path.sep);
+                    splits[splits.length - 1] = CONST.STORAGE.APP_CONFIG;
+                    let configPath = splits.join(path.sep);
+
+                    // If configuration file exists open the app
+                    if(fs.existsSync(configPath)){
+                        let readed = fs.readFileSync(configPath);
+                        let newApp = new App(JSON.parse(readed));
+                        _that.initDevice();
+                        _that.loadApp(newApp.url);
+                        _that.$timeout(() => {
+                            _that.app = newApp;
+                        }, 5);
+                    }
+                    // Otherwise open modal to create new app from URL
+                    else {
+                        this.$mdDialog.show({
+                            controller: 'NewAppCtrl',
+                            controllerAs: '$ctrl',
+                            templateUrl: `${__dirname}/newapp/newappDialog.html`,
+                            parent: angular.element(document.body),
+                            openFrom: ev.target,
+                            closeTo: ev.target,
+                            disableParentScroll: true,
+                            hasBackdrop: false,
+                            clickOutsideToClose: false,
+                            locals: {
+                                url : file[0]
+                            },
+                            escapeToClose: true}).then(
+                            (appData) => {
+
+                            },
+                            () => {}
+                        );
+                    }
                 }
             }, 10);
         });
@@ -135,6 +168,6 @@ class ViewController{
     }
 
 }
-ViewController.$inject = ["DevicesService", "StorageService", "$q", "app", "$timeout"];
+ViewController.$inject = ["DevicesService", "StorageService", "$q", "app", "$timeout", "$mdDialog"];
 
 module.exports = ViewController;

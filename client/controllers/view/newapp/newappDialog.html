@@ -1,0 +1,109 @@
+<md-dialog id="newAppDialog">
+    <form ng-cloak name="appForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nuova app</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
+                    <md-icon md-svg-icon="close"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <md-input-container class="md-block">
+                    <label> Percorso </label>
+                    <input ng-model="$ctrl.app.url" disabled>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label> Nome </label>
+                    <input ng-model="$ctrl.app.name">
+                </md-input-container>
+
+                <div layout="row">
+                    <div flex="33">
+                        <md-input-container class="md-block md-input-has-value">
+                            <label> Device </label>
+                            <div class="checkbox" ng-repeat="type in $ctrl.DEVICE_TYPES">
+                                <md-checkbox class="md-primary"
+                                             ng-checked="$ctrl.exists(type, $ctrl.app.compatibility.types)"
+                                             ng-click="$ctrl.toggle(type, $ctrl.app.compatibility.types)">
+                                    {{ type }}
+                                </md-checkbox>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex="33">
+                        <md-input-container class="md-block md-input-has-value">
+                            <label> Orientamento </label>
+                            <div class="checkbox" ng-repeat="orientation in $ctrl.ORIENTATIONS">
+                                <md-checkbox class="md-primary"
+                                             ng-checked="$ctrl.exists(orientation, $ctrl.app.compatibility.orientations)"
+                                             ng-click="$ctrl.toggle(orientation, $ctrl.app.compatibility.orientations)">
+                                    {{ orientation }}
+                                </md-checkbox>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex="33">
+                        <md-input-container class="md-block md-input-has-value">
+                            <label> Sistemi operativi </label>
+                            <div class="checkbox" ng-repeat="os in $ctrl.DEVICE_OSS">
+                                <md-checkbox class="md-primary"
+                                             ng-checked="$ctrl.exists(os, $ctrl.app.compatibility.oss)"
+                                             ng-click="$ctrl.toggle(os, $ctrl.app.compatibility.oss)">
+                                    {{ os }}
+                                </md-checkbox>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+
+                <!--<md-input-container class="md-block">-->
+                <!--<label>City</label>-->
+                <!--<input ng-model="user.city">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container class="md-block">-->
+                <!--<label>State</label>-->
+                <!--<md-select ng-model="user.state">-->
+                <!--<md-option ng-repeat="state in states" value="{{state.abbrev}}">-->
+                <!--{{state.abbrev}}-->
+                <!--</md-option>-->
+                <!--</md-select>-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container class="md-block">-->
+                <!--<label>Postal Code</label>-->
+                <!--<input name="postalCode" ng-model="user.postalCode" placeholder="12345"-->
+                <!--required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">-->
+
+                <!--<div ng-messages="userForm.postalCode.$error" role="alert" multiple>-->
+                <!--<div ng-message="required" class="my-message">You must supply a postal code.</div>-->
+                <!--<div ng-message="pattern" class="my-message">That doesn't look like a valid postal-->
+                <!--code.-->
+                <!--</div>-->
+                <!--<div ng-message="md-maxlength" class="my-message">-->
+                <!--Don't use the long version silly...we don't need to be that specific...-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</md-input-container>-->
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="$ctrl.closeDialog()">
+                Annulla
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="$ctrl.createApp()">
+                Apri
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

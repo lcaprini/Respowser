@@ -32,8 +32,7 @@ class SelectController{
     loadApp(){
         console.info("SelectController:loadApp - prepare to load url", this.sourceFile);
 
-        let app = new App();
-        app.createFromUrl(this.sourceFile);
+        let app = new App(this.sourceFile);
         
         // Set last recent app in storage
         storage.set(CONST.STORAGE.LAST_APP, app, (err)=>{

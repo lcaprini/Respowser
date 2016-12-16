@@ -3,10 +3,11 @@ const path = require("path");
 const STORAGE = require("core/constants").STORAGE;
 const ORIENTATIONS = require("core/constants").ORIENTATIONS;
 const DEVICES = require("core/constants").DEVICES;
+const _ = require("lodash");
 
 class App {
 
-    constructor(){
+    constructor(data){
         // Name
         this.name = STORAGE.DEFAULT_APP;
 
@@ -34,6 +35,17 @@ class App {
                 DEVICES.OSS.ANDROID,
                 // DEVICES.OSS.WINDOWS
             ]
+        };
+
+        if(data){
+            // If data is String assume is the URL
+            if(_.isString(data)){
+                this.createFromUrl(data);
+            }
+            // If data is an object assume is a stored app
+            else if(_.isObject(data)){
+                this.createFromStorage(data);
+            }
         }
     }
 
@@ -42,15 +54,11 @@ class App {
         this.url = app.url;
         this.lastDevice = app.lastDevice;
         this.compatibility = app.compatibility;
-
-        return this;
     }
 
     createFromUrl(url){
         this.name = url.split(path.sep).splice((-2))[0];
         this.url = url;
-
-        return this;
     }
 
     updateDevice(device){

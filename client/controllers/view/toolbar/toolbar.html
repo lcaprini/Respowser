@@ -1,6 +1,11 @@
 
+<!--<md-button class="md-icon-button" ng-if="$ctrl.canOpenApp">-->
+    <!--<md-icon md-svg-icon="create_new" ng-click="$ctrl.createApp($event)"></md-icon>-->
+    <!--<md-tooltip md-direction="bottom" md-delay="250"> Apri nuova app </md-tooltip>-->
+<!--</md-button>-->
+
 <md-button class="md-icon-button" ng-if="$ctrl.canOpenApp">
-    <md-icon md-svg-icon="folder_open" ng-click="$ctrl.openApp()"></md-icon>
+    <md-icon md-svg-icon="folder_open" ng-click="$ctrl.openApp($event)"></md-icon>
     <md-tooltip md-direction="bottom" md-delay="250"> Apri </md-tooltip>
 </md-button>
 

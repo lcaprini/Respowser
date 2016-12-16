@@ -1,0 +1,29 @@
+
+#newAppDialog {
+    width: 600px;
+
+    .checkbox {
+        width: 30%;
+    }
+
+    md-checkbox {
+        margin-bottom: 0;
+        margin-top: 5px;
+
+        .md-container {
+            left: 10px;
+
+            .md-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        &.md-checked .md-icon:after {
+            top: -1px;
+            left: 4px;
+            width: 5px;
+            height: 11px;
+        }
+    }
+}

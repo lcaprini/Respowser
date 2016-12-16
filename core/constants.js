@@ -4,23 +4,24 @@ module.exports = {
     STORAGE: {
         DEFAULT_APP     : "trasfERte",
         LAST_APP        : "last-app",
-        RECENTS_APP     : "recent-apps"
+        RECENTS_APP     : "recent-apps",
+        APP_CONFIG      : ".res-app-config.json"
     },
 
     ORIENTATIONS: {
-        PORTRAIT    : "portrait",
-        LANDSCAPE   : "landscape"
+        PORTRAIT    : "Portrait",
+        LANDSCAPE   : "Landscape"
     },
 
     DEVICES : {
         TYPES : {
-            SMARTPHONE: "smartphone",
-            TABLET: "tablet"
+            SMARTPHONE: "Smartphone",
+            TABLET: "Tablet"
         },
         OSS : {
-            ANDROID : "android",
-            IOS : "ios",
-            WINDOWS : "windows"
+            ANDROID : "Android",
+            IOS : "iOS",
+            // WINDOWS : "Windows"
         }
     }
 };
