@@ -1,5 +1,5 @@
 <md-dialog id="newAppDialog">
-    <form ng-cloak name="appForm">
+    <form ng-cloak name="appForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Nuova app</h2>
@@ -11,52 +11,74 @@
         </md-toolbar>
 
         <md-dialog-content>
-            <div class="md-dialog-content">
+            <div class="md-dialog-content no-bottom-padding">
 
                 <md-input-container class="md-block">
                     <label> Percorso </label>
-                    <input ng-model="$ctrl.app.url" disabled>
+                    <input type="text" name="url" ng-model="$ctrl.app.url" required disabled>
                 </md-input-container>
 
-                <md-input-container class="md-block">
+                <md-input-container class="md-block no-bottom-margin">
                     <label> Nome </label>
-                    <input ng-model="$ctrl.app.name">
+                    <input type="text" name="name" ng-model="$ctrl.app.name" required>
+                    <div ng-messages="appForm.name.$error">
+                        <div ng-message="required"> Inserire il nome dell'app </div>
+                    </div>
                 </md-input-container>
 
                 <div layout="row">
                     <div flex="33">
+
                         <md-input-container class="md-block md-input-has-value">
                             <label> Device </label>
                             <div class="checkbox" ng-repeat="type in $ctrl.DEVICE_TYPES">
                                 <md-checkbox class="md-primary"
-                                             ng-checked="$ctrl.exists(type, $ctrl.app.compatibility.types)"
-                                             ng-click="$ctrl.toggle(type, $ctrl.app.compatibility.types)">
+                                             ng-true-value="'true'" ng-false-value="'false'"
+                                             ng-checked="$ctrl.exists(type, $ctrl.app.compatibility.types, 'typeslength')"
+                                             ng-click="$ctrl.toggle(type, $ctrl.app.compatibility.types, 'typeslength')">
                                     {{ type }}
                                 </md-checkbox>
                             </div>
+                            <input type="number" class="hidden" name="typeslength" ng-model="$ctrl.typeslength" ng-min="1">
+                            <div ng-messages="appForm.typeslength.$error" class="fake-input-line">
+                                <div ng-message="min"> Selezionare almeno una tipologia </div>
+                            </div>
                         </md-input-container>
+
                     </div>
                     <div flex="33">
+
                         <md-input-container class="md-block md-input-has-value">
                             <label> Orientamento </label>
                             <div class="checkbox" ng-repeat="orientation in $ctrl.ORIENTATIONS">
                                 <md-checkbox class="md-primary"
-                                             ng-checked="$ctrl.exists(orientation, $ctrl.app.compatibility.orientations)"
-                                             ng-click="$ctrl.toggle(orientation, $ctrl.app.compatibility.orientations)">
+                                             ng-true-value="'true'" ng-false-value="'false'"
+                                             ng-checked="$ctrl.exists(orientation, $ctrl.app.compatibility.orientations, 'orientationlength')"
+                                             ng-click="$ctrl.toggle(orientation, $ctrl.app.compatibility.orientations, 'orientationlength')">
                                     {{ orientation }}
                                 </md-checkbox>
                             </div>
+                            <input type="number" class="hidden" name="orientationlength" ng-model="$ctrl.orientationlength" ng-min="1">
+                            <div ng-messages="appForm.orientationlength.$error" class="fake-input-line">
+                                <div ng-message="min"> Selezionare almeno un orientamento </div>
+                            </div>
                         </md-input-container>
+
                     </div>
                     <div flex="33">
                         <md-input-container class="md-block md-input-has-value">
                             <label> Sistemi operativi </label>
                             <div class="checkbox" ng-repeat="os in $ctrl.DEVICE_OSS">
                                 <md-checkbox class="md-primary"
-                                             ng-checked="$ctrl.exists(os, $ctrl.app.compatibility.oss)"
-                                             ng-click="$ctrl.toggle(os, $ctrl.app.compatibility.oss)">
+                                             ng-true-value="'true'" ng-false-value="'false'"
+                                             ng-checked="$ctrl.exists(os, $ctrl.app.compatibility.oss, 'solength')"
+                                             ng-click="$ctrl.toggle(os, $ctrl.app.compatibility.oss, 'solength')">
                                     {{ os }}
                                 </md-checkbox>
+                            </div>
+                            <input type="number" class="hidden" name="solength" ng-model="$ctrl.solength" ng-min="1">
+                            <div ng-messages="appForm.solength.$error" class="fake-input-line">
+                                <div ng-message="min"> Selezionare almeno un sistema operativo </div>
                             </div>
                         </md-input-container>
                     </div>

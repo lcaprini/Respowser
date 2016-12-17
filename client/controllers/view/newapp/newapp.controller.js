@@ -16,13 +16,14 @@ class NewAppController{
      * @param $mdDialog
      * @param url
      */
-    constructor(DevicesService, StorageService, $timeout, $mdDialog, url){
+    constructor(DevicesService, StorageService, $timeout, $mdDialog, url, $scope){
         this.DevicesService = DevicesService;
         this.StorageService = StorageService;
         this.$timeout = $timeout;
         this.$mdDialog = $mdDialog;
         this.app = new App();
         this.app.url = url;
+        this.$scope = $scope;
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
         this.DEVICE_OSS = CONST.DEVICES.OSS;
@@ -30,23 +31,28 @@ class NewAppController{
 
         // Get the list of all available devices
         this.devicesList = this.DevicesService.getDevices();
-
     }
 
-    toggle(item, list) {
+    toggle(item, list, lengthvar) {
         if(item && list) {
-            var idx = list.indexOf(item);
+            let idx = list.indexOf(item);
             if (idx > -1) {
                 list.splice(idx, 1);
             }
             else {
                 list.push(item);
             }
+            if(lengthvar) {
+                this.$scope.appForm[lengthvar].$setTouched();
+                this[lengthvar] = list.length;
+            }
         }
     };
 
-    exists(item, list) {
+    exists(item, list, lengthvar) {
         if(item && list) {
+            if(lengthvar)
+                this[lengthvar] = list.length;
             return list.indexOf(item) > -1;
         }
     };
@@ -66,6 +72,6 @@ class NewAppController{
     }
 
 }
-NewAppController.$inject = ["DevicesService", "StorageService", "$timeout", "$mdDialog", "url"];
+NewAppController.$inject = ["DevicesService", "StorageService", "$timeout", "$mdDialog", "url", "$scope"];
 
 module.exports = NewAppController;

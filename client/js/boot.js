@@ -3,6 +3,7 @@ require('angular');
 require("angular-material");
 require("angular-route");
 require("angular-filter");
+require("angular-messages");
 
 // Initialize appModules
 const appName = "Respowser";
@@ -18,6 +19,7 @@ let app = angular.module(appName, [
     "ngMaterial",
     "ngRoute",
     "angular.filter",
+    "ngMessages",
 
     // Inject modules
     ControllersModule.name,

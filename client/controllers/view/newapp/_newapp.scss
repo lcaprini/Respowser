@@ -2,6 +2,14 @@
 #newAppDialog {
     width: 600px;
 
+    .no-bottom-padding {
+        padding-bottom: 0;
+    }
+
+    .no-bottom-margin {
+        margin-bottom: 0;
+    }
+
     .checkbox {
         width: 30%;
     }
@@ -25,5 +33,27 @@
             width: 5px;
             height: 11px;
         }
+
+        &.md-focused:not([disabled]) .md-container:before {
+            left: -8px;
+            top: -8px;
+            right: -5px;
+            bottom: -5px;
+        }
+
+        .md-container:after {
+            top: -10px;
+            right: -7px;
+            bottom: -7px;
+            left: -10px;
+        }
+    }
+
+    .fake-input-line {
+        border-top: 1px solid rgba(0,0,0,0.12);
+        margin-top: 5px;
+    }
+    md-input-container.md-input-invalid .fake-input-line {
+        border-top-color: rgb(221,44,0);
     }
 }
