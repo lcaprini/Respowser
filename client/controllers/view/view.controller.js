@@ -44,7 +44,7 @@ class ViewController{
         window.addEventListener('resize', function(e){
             e.preventDefault();
             that.$timeout(() => {}, 1);
-        })
+        });
     }
 
     /**

@@ -3,8 +3,8 @@
         {
             "model": "iPhone 6s",
             "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-            "type": "smartphone",
-            "os" : "ios",
+            "type": "Smartphone",
+            "os" : "iOS",
             "thumb": "apple-iphone-6s.png",
             "frame": {
                 "image": "apple-iphone-6s.png",
@@ -28,8 +28,8 @@
         {
             "model": "iPhone 6s Plus",
             "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-            "type": "smartphone",
-            "os" : "ios",
+            "type": "Smartphone",
+            "os" : "iOS",
             "thumb": "apple-iphone-6s-plus.png",
             "frame": {
                 "image": "apple-iphone-6s-plus.png",
@@ -53,8 +53,8 @@
         {
             "model": "iPhone 5s",
             "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-            "type": "smartphone",
-            "os" : "ios",
+            "type": "Smartphone",
+            "os" : "iOS",
             "thumb": "apple-iphone-5s.png",
             "frame": {
                 "image": "apple-iphone-5s.png",
@@ -78,8 +78,8 @@
         {
             "model": "Nexus 5X",
             "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
-            "type": "smartphone",
-            "os" : "android",
+            "type": "Smartphone",
+            "os" : "Android",
             "thumb": "nexus-5x.png",
             "frame": {
                 "image": "nexus-5x.png",
@@ -103,8 +103,8 @@
         {
             "model": "iPad Air 2",
             "userAgent": "Mozilla/5.0 (iPad; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-            "type": "tablet",
-            "os" : "ios",
+            "type": "Tablet",
+            "os" : "iOS",
             "thumb": "apple-ipad-air-2.png",
             "frame": {
                 "image": "apple-ipad-air-2.png",
@@ -128,8 +128,8 @@
         {
             "model": "iPad Mini 4",
             "userAgent": "Mozilla/5.0 (iPad; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-            "type": "tablet",
-            "os" : "ios",
+            "type": "Tablet",
+            "os" : "iOS",
             "thumb": "apple-ipad-mini-4.png",
             "frame": {
                 "image": "apple-ipad-mini-4.png",
@@ -153,8 +153,8 @@
         {
             "model": "Nexus 9",
             "userAgent": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 9 Build/MMB29S) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Safari/537.36",
-            "type": "tablet",
-            "os" : "android",
+            "type": "Tablet",
+            "os" : "Android",
             "thumb": "nexus-9.png",
             "frame": {
                 "image": "nexus-9.png",
@@ -178,8 +178,8 @@
         {
             "model": "Galaxy Tab S2 9.7",
             "userAgent": "Mozilla/5.0 (Linux; Android 5.0; SM-T810 Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Safari/537.36",
-            "type": "tablet",
-            "os" : "android",
+            "type": "Tablet",
+            "os" : "Android",
             "thumb": "galaxy-tab-s2-97.png",
             "frame": {
                 "image": "galaxy-tab-s2-97.png",
