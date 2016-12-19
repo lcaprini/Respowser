@@ -2,7 +2,7 @@
 const Controller = require("./view.controller");
 const AppConfig = require("./appconfig/appconfig.controller");
 const App = require("core/app");
-const CONST = require("core/constants");
+const fs = require("fs");
 
 function router($routeProvider){
     $routeProvider
@@ -12,14 +12,19 @@ function router($routeProvider){
             controllerAs : "$ctrl",
             resolve      : {
                 app : [
-                    "StorageService",
-                    (StorageService) => {
-                        // Get last used device
-                        return StorageService.get(CONST.STORAGE.DEFAULT_APP).then(
-                            (default_app) => {
-                                return new App(default_app);
+                    "$timeout",
+                    ($timeout) => {
+                        return $timeout(() => {
+                            let defaultApp = new App();
+                            if(defaultApp.config && fs.existsSync(defaultApp.config)){
+                                let readed = fs.readFileSync(defaultApp.config);
+                                defaultApp.createFromStorage(JSON.parse(readed));
                             }
-                        );
+                            // Disable config dialog for default app
+                            defaultApp.noConfig = true;
+
+                            return defaultApp;
+                        }, 200);
                 }]
             }
         }

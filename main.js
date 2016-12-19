@@ -9,15 +9,10 @@ const BrowserWindow = electron.BrowserWindow;
 // Module to read and write JSON on file system
 const Promise = require('bluebird');
 const Storage = Promise.promisifyAll(require('electron-json-storage'));
-// Module for all app constants
-const CONST = require("core/constants");
-// Class for default app
-const App = require("core/app");
 
 const path = require("path");
 const url = require("url");
 const config = require("core/config");
-const _ = require("lodash");
 
 // Keep a global reference of the window object, if you don"t, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -25,32 +20,7 @@ let mainWindow;
 
 function initApp(){
     console.log("initApp");
-
-    console.log("Check for default app in storage");
-    Storage.getAsync(CONST.STORAGE.DEFAULT_APP).then(
-        (app)=>{
-            if(_.isEmpty(app)){
-                console.log("Default app isn't in storage => Create");
-
-                let defaultApp = new App();
-                Storage.setAsync(CONST.STORAGE.DEFAULT_APP, defaultApp).then(
-                    ()=>{
-                        // Start app
-                        createWindow();
-                    },
-                    (err)=>{
-                        alert(err);
-                    }
-                )
-            }
-            else {
-                console.log("Default app is in storage => Start app");
-                createWindow();
-            }
-        },
-        (err)=>{
-            alert(err);
-        });
+    createWindow();
 }
 
 function createWindow() {

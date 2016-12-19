@@ -3,6 +3,7 @@ const App = require("core/app");
 const Device = require("core/device");
 const CONST = require("core/constants");
 const config = require("core/config");
+const Utils = require("core/utils");
 const _ = require("lodash");
 const {dialog} = require('electron').remote;
 const fs = require('fs');
@@ -61,12 +62,11 @@ class ViewController{
      */
     initDefaultApp(){
         let _that = this;
-        var url = require('path').dirname(require.main.filename) + this.app.url;
 
         let display = document.querySelector("#display");
         const loadFrame = () => {
             display.removeEventListener("dom-ready", loadFrame);
-            _that.loadApp(url);
+            _that.loadApp(this.app.url);
         };
         display.addEventListener("dom-ready", loadFrame);
     }
@@ -102,24 +102,13 @@ class ViewController{
             _that.$timeout(() => {
                 if (file && file.length > 0){
 
-                    const openNewApp = function(appData){
-                        _that.$timeout(() => {
-                            let _newApp = new App(appData);
-                            _that.app = _newApp;
-                            _that.initDevice();
-                            _that.loadApp(_newApp.url);
-                        }, 5);
-                    };
-
                     // Find app configuration, if exists
-                    let splits = file[0].split(path.sep);
-                    splits[splits.length - 1] = CONST.STORAGE.APP_CONFIG;
-                    let configPath = splits.join(path.sep);
+                    let configPath = Utils.getConfigUrl(file[0]);
 
                     // If configuration file exists open the app
                     if(fs.existsSync(configPath)){
                         let readed = fs.readFileSync(configPath);
-                        openNewApp(JSON.parse(readed));
+                        _that.openNewApp(JSON.parse(readed));
                     }
                     // Otherwise open modal to create new app from URL
                     else {
@@ -132,11 +121,12 @@ class ViewController{
                             hasBackdrop: false,
                             clickOutsideToClose: false,
                             locals: {
-                                url : file[0]
+                                url : file[0],
+                                app : null
                             },
                             escapeToClose: true}).then(
                             (appData) => {
-                                openNewApp(appData);
+                                _that.openNewApp(appData);
                             },
                             () => {}
                         );
@@ -144,7 +134,15 @@ class ViewController{
                 }
             }, 10);
         });
-    }
+    };
+    openNewApp(appData){
+        this.$timeout(() => {
+        let _newApp = new App(appData);
+        this.app = _newApp;
+        this.initDevice();
+        this.loadApp(_newApp.url);
+    }, 5);
+};
 
     /**
      * Refresh app without reload frame
@@ -160,7 +158,28 @@ class ViewController{
     rotateDevice(){
         this.device.rotate();
         this.app.updateDevice(this.device);
-        this.StorageService.set(this.app.name, this.app);
+    }
+
+    viewSettings(){
+        let _that = this;
+        this.$mdDialog.show({
+            controller: 'AppConfigCtrl',
+            controllerAs: '$ctrl',
+            templateUrl: `${__dirname}/appconfig/appconfigDialog.html`,
+            parent: angular.element(document.body),
+            disableParentScroll: true,
+            hasBackdrop: false,
+            clickOutsideToClose: false,
+            locals: {
+                url : null,
+                app : angular.copy(this.app)
+            },
+            escapeToClose: true}).then(
+            (appData) => {
+                _that.openNewApp(appData);
+            },
+            () => {}
+        );
     }
 
     /**

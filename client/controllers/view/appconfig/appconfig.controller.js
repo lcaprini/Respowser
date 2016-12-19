@@ -5,6 +5,7 @@ const config = require("core/config");
 const fs = require('fs');
 const path = require("path");
 const _ = require("lodash");
+const Utils = require("core/utils");
 
 class AppConfigController{
 
@@ -15,14 +16,18 @@ class AppConfigController{
      * @param $timeout
      * @param $mdDialog
      * @param url
+     * @param app
+     * @param $scope
      */
-    constructor(DevicesService, StorageService, $timeout, $mdDialog, url, $scope){
+    constructor(DevicesService, StorageService, $timeout, $mdDialog, url, app, $scope){
         this.DevicesService = DevicesService;
         this.StorageService = StorageService;
         this.$timeout = $timeout;
         this.$mdDialog = $mdDialog;
-        this.app = new App();
-        this.app.url = url;
+        this.app = (app)? app : new App();
+        if(url)
+            this.app.url = url;
+
         this.$scope = $scope;
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
@@ -85,16 +90,13 @@ class AppConfigController{
                 model : device.model,
                 orientation : this.app.compatibility.orientations[0]
             };
-            console.log(this.app);
-            let splits = this.app.url.split(path.sep);
-            splits[splits.length - 1] = CONST.STORAGE.APP_CONFIG;
-            let configPath = splits.join(path.sep);
+            let configPath = Utils.getConfigUrl(this.app.url);
             fs.writeFileSync(configPath, JSON.stringify(this.app, null, 4));
             this.$mdDialog.hide(this.app);
         }
     }
 
 }
-AppConfigController.$inject = ["DevicesService", "StorageService", "$timeout", "$mdDialog", "url", "$scope"];
+AppConfigController.$inject = ["DevicesService", "StorageService", "$timeout", "$mdDialog", "url", "app", "$scope"];
 
 module.exports = AppConfigController;
