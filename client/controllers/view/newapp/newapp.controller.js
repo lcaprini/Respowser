@@ -1,10 +1,10 @@
 
 const App = require("core/app");
-const Device = require("core/device");
 const CONST = require("core/constants");
 const config = require("core/config");
+const fs = require('fs');
+const path = require("path");
 const _ = require("lodash");
-const {dialog} = require('electron').remote;
 
 class NewAppController{
 
@@ -68,7 +68,30 @@ class NewAppController{
      * Create new app using form infos
      */
     createApp() {
+        if(this.$scope.appForm.$valid){
 
+            let _that = this;
+            let device = _.find(this.devicesList, function(d){
+                return _that.app.compatibility.types.indexOf(d.type) > -1 &&
+                       _that.app.compatibility.oss.indexOf(d.os) > -1;
+            });
+
+            if(!device){
+                alert("Nessun dispositivo disponibile con le caratteristiche richieste");
+                return;
+            }
+
+            this.app.lastDevice = {
+                model : device.model,
+                orientation : this.app.compatibility.orientations[0]
+            };
+            console.log(this.app);
+            let splits = this.app.url.split(path.sep);
+            splits[splits.length - 1] = CONST.STORAGE.APP_CONFIG;
+            let configPath = splits.join(path.sep);
+            fs.writeFileSync(configPath, JSON.stringify(this.app, null, 4));
+            this.$mdDialog.hide(this.app);
+        }
     }
 
 }

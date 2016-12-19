@@ -87,7 +87,12 @@ class ViewController{
         });
     }
 
-    openApp(ev){
+    /**
+     * Allow app open by selecting its main html file.
+     * If app was already configured open it;
+     * open config modal otherwise
+     */
+    openApp(){
         let _that = this;
 
         dialog.showOpenDialog({
@@ -97,6 +102,15 @@ class ViewController{
             _that.$timeout(() => {
                 if (file && file.length > 0){
 
+                    const openNewApp = function(appData){
+                        _that.$timeout(() => {
+                            let _newApp = new App(appData);
+                            _that.app = _newApp;
+                            _that.initDevice();
+                            _that.loadApp(_newApp.url);
+                        }, 5);
+                    };
+
                     // Find app configuration, if exists
                     let splits = file[0].split(path.sep);
                     splits[splits.length - 1] = CONST.STORAGE.APP_CONFIG;
@@ -105,12 +119,7 @@ class ViewController{
                     // If configuration file exists open the app
                     if(fs.existsSync(configPath)){
                         let readed = fs.readFileSync(configPath);
-                        let newApp = new App(JSON.parse(readed));
-                        _that.initDevice();
-                        _that.loadApp(newApp.url);
-                        _that.$timeout(() => {
-                            _that.app = newApp;
-                        }, 5);
+                        openNewApp(JSON.parse(readed));
                     }
                     // Otherwise open modal to create new app from URL
                     else {
@@ -119,8 +128,6 @@ class ViewController{
                             controllerAs: '$ctrl',
                             templateUrl: `${__dirname}/newapp/newappDialog.html`,
                             parent: angular.element(document.body),
-                            openFrom: ev.target,
-                            closeTo: ev.target,
                             disableParentScroll: true,
                             hasBackdrop: false,
                             clickOutsideToClose: false,
@@ -129,7 +136,7 @@ class ViewController{
                             },
                             escapeToClose: true}).then(
                             (appData) => {
-
+                                openNewApp(appData);
                             },
                             () => {}
                         );

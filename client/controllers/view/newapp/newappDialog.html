@@ -41,7 +41,7 @@
                             </div>
                             <input type="number" class="hidden" name="typeslength" ng-model="$ctrl.typeslength" ng-min="1">
                             <div ng-messages="appForm.typeslength.$error" class="fake-input-line">
-                                <div ng-message="min"> Selezionare almeno una tipologia </div>
+                                <div ng-message="min"> Definire almeno un device </div>
                             </div>
                         </md-input-container>
 
@@ -60,7 +60,7 @@
                             </div>
                             <input type="number" class="hidden" name="orientationlength" ng-model="$ctrl.orientationlength" ng-min="1">
                             <div ng-messages="appForm.orientationlength.$error" class="fake-input-line">
-                                <div ng-message="min"> Selezionare almeno un orientamento </div>
+                                <div ng-message="min"> Definire almeno un orientamento </div>
                             </div>
                         </md-input-container>
 
@@ -78,42 +78,11 @@
                             </div>
                             <input type="number" class="hidden" name="solength" ng-model="$ctrl.solength" ng-min="1">
                             <div ng-messages="appForm.solength.$error" class="fake-input-line">
-                                <div ng-message="min"> Selezionare almeno un sistema operativo </div>
+                                <div ng-message="min"> Definire almeno un sistema operativo </div>
                             </div>
                         </md-input-container>
                     </div>
                 </div>
-
-
-                <!--<md-input-container class="md-block">-->
-                <!--<label>City</label>-->
-                <!--<input ng-model="user.city">-->
-                <!--</md-input-container>-->
-
-                <!--<md-input-container class="md-block">-->
-                <!--<label>State</label>-->
-                <!--<md-select ng-model="user.state">-->
-                <!--<md-option ng-repeat="state in states" value="{{state.abbrev}}">-->
-                <!--{{state.abbrev}}-->
-                <!--</md-option>-->
-                <!--</md-select>-->
-                <!--</md-input-container>-->
-
-                <!--<md-input-container class="md-block">-->
-                <!--<label>Postal Code</label>-->
-                <!--<input name="postalCode" ng-model="user.postalCode" placeholder="12345"-->
-                <!--required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">-->
-
-                <!--<div ng-messages="userForm.postalCode.$error" role="alert" multiple>-->
-                <!--<div ng-message="required" class="my-message">You must supply a postal code.</div>-->
-                <!--<div ng-message="pattern" class="my-message">That doesn't look like a valid postal-->
-                <!--code.-->
-                <!--</div>-->
-                <!--<div ng-message="md-maxlength" class="my-message">-->
-                <!--Don't use the long version silly...we don't need to be that specific...-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</md-input-container>-->
 
             </div>
         </md-dialog-content>
