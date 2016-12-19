@@ -6,10 +6,10 @@ const fs = require('fs');
 const path = require("path");
 const _ = require("lodash");
 
-class NewAppController{
+class AppConfigController{
 
     /**
-     * Initialize NewAppController
+     * Initialize AppConfigController
      * @param DevicesService
      * @param StorageService
      * @param $timeout
@@ -95,6 +95,6 @@ class NewAppController{
     }
 
 }
-NewAppController.$inject = ["DevicesService", "StorageService", "$timeout", "$mdDialog", "url", "$scope"];
+AppConfigController.$inject = ["DevicesService", "StorageService", "$timeout", "$mdDialog", "url", "$scope"];
 
-module.exports = NewAppController;
+module.exports = AppConfigController;

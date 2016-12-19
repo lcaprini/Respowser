@@ -124,9 +124,9 @@ class ViewController{
                     // Otherwise open modal to create new app from URL
                     else {
                         this.$mdDialog.show({
-                            controller: 'NewAppCtrl',
+                            controller: 'AppConfigCtrl',
                             controllerAs: '$ctrl',
-                            templateUrl: `${__dirname}/newapp/newappDialog.html`,
+                            templateUrl: `${__dirname}/appconfig/appconfigDialog.html`,
                             parent: angular.element(document.body),
                             disableParentScroll: true,
                             hasBackdrop: false,

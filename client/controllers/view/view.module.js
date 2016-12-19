@@ -1,6 +1,6 @@
 
 const Controller = require("./view.controller");
-const NewApp = require("./newapp/newapp.controller");
+const AppConfig = require("./appconfig/appconfig.controller");
 const App = require("core/app");
 const CONST = require("core/constants");
 
@@ -29,7 +29,7 @@ router.$inject = ["$routeProvider"];
 
 const angularModule = angular.module("view", [])
     .controller("ViewCtrl", Controller)
-    .controller("NewAppCtrl", NewApp)
+    .controller("AppConfigCtrl", AppConfig)
     .run()
     .config(router);
 

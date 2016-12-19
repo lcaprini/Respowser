@@ -10,7 +10,8 @@
                      ng-class="{'expanded' : $ctrl.accordion[type].expanded}"></md-icon>
         </div>
     </md-toolbar>
-    <div class="dataContent" ng-class="{activeContent : $ctrl.accordion[type].expanded}">
+    <div class="dataContent" ng-class="{activeContent : $ctrl.accordion[type].expanded}"
+         ng-if="$ctrl.app.compatibility.types.indexOf(type) > -1">
         <md-list>
             <md-list-item ng-repeat="device in list track by device.model"
                           ng-click="$ctrl.setDevice(device)"
