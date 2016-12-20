@@ -85,6 +85,7 @@ class ViewController{
         display.getWebContents().enableDeviceEmulation({
             screenPosition : 'mobile',
         });
+        display.getWebContents().openDevTools();
     }
 
     /**

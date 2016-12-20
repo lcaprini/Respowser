@@ -1,7 +1,7 @@
 
 const config = {
     window : {
-        width: 1400,
+        width: 1200,
         height: 900
     },
     singleApp : false
