@@ -4,3 +4,4 @@ node_modules
 /client/css/app.css
 /client/icons/icons.svg
 /client/www/res-app-config.json
+/client/css/app.css.map
