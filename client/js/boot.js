@@ -2,14 +2,13 @@
 require('angular');
 require("angular-material");
 require("angular-route");
-require("angular-filter");
 require("angular-messages");
 
 // Initialize appModules
 const appName = "Respowser";
 const ControllersModule = require("../controllers/controllers.module");
-const ServicesModule = require("./services/services.module.js");
-const ModulesModule = require("./modules/modules.module.js");
+const ServicesModule = require("./services/services.module");
+const ModulesModule = require("./modules/modules.module");
 const FiltersModule = require("./filters/filters.module");
 const DirectivesModule = require("./directives/directives.module");
 
@@ -18,7 +17,6 @@ const DirectivesModule = require("./directives/directives.module");
 let app = angular.module(appName, [
     "ngMaterial",
     "ngRoute",
-    "angular.filter",
     "ngMessages",
 
     // Inject modules

@@ -1,5 +1,5 @@
 
-<md-button class="md-icon-button" ng-if="$ctrl.canOpenApp">
+<md-button class="md-icon-button" ng-if="$ctrl.canOpenOtherApps">
     <md-icon md-svg-icon="folder_open" ng-click="$ctrl.openApp($event)"></md-icon>
     <md-tooltip md-direction="bottom" md-delay="2000"> Apri </md-tooltip>
 </md-button>
@@ -11,12 +11,17 @@
 
 <span class="flex"></span>
 
-<md-button class="md-icon-button" ng-hide="$ctrl.app.noConfig">
-    <md-icon md-svg-icon="settings" ng-click="$ctrl.viewSettings()"></md-icon>
-    <md-tooltip md-direction="bottom" md-delay="2000"> Impostazioni app </md-tooltip>
+<md-button class="md-icon-button" ng-if="$ctrl.canOpenDevTools">
+    <md-icon md-svg-icon="developer_mode" ng-click="$ctrl.toggleDevTools($event)"></md-icon>
+    <md-tooltip md-direction="bottom" md-delay="2000"> Developer tools </md-tooltip>
 </md-button>
 
 <md-button class="md-icon-button" ng-if="$ctrl.canRotateDevice">
     <md-icon md-svg-icon="screen_rotation" ng-click="$ctrl.rotateDevice()"></md-icon>
     <md-tooltip md-direction="bottom" md-delay="2000"> Ruota dispositivo </md-tooltip>
+</md-button>
+
+<md-button class="md-icon-button" ng-hide="$ctrl.app.noConfig">
+    <md-icon md-svg-icon="settings" ng-click="$ctrl.viewSettings()"></md-icon>
+    <md-tooltip md-direction="bottom" md-delay="2000"> Impostazioni app </md-tooltip>
 </md-button>

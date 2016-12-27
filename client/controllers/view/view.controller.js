@@ -21,6 +21,7 @@ class ViewController{
      * @param $mdDialog
      */
     constructor(DevicesService, StorageService, $q, app, $timeout, $mdDialog){
+        this._ = _;
         this.DevicesService = DevicesService;
         this.StorageService = StorageService;
         this.$q = $q;
@@ -30,7 +31,8 @@ class ViewController{
         console.log(app);
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
-        this.canOpenApp = !config.singleApp;
+        this.canOpenOtherApps = !config.canOpenOtherApps;
+        this.canOpenDevTools = config.canOpenDevTools;
 
         // Get the list of all available devices
         this.devicesList = this.DevicesService.getDevices();
@@ -62,30 +64,32 @@ class ViewController{
      */
     initDefaultApp(){
         let _that = this;
+        this.app.devTools = false;
 
         let display = document.querySelector("#display");
         const loadFrame = () => {
             display.removeEventListener("dom-ready", loadFrame);
-            _that.loadApp(this.app.url);
+            _that.loadApp(this.app);
         };
         display.addEventListener("dom-ready", loadFrame);
     }
 
     /**
      * Load app from its url, loading frame and set userAgent of selected device
-     * @param url
+     * @param app
      */
-    loadApp(url){
-        console.info("ViewController:loadApp", url);
+    loadApp(app){
+        console.info("ViewController:loadApp", app);
 
         let display = document.querySelector("#display");
-        display.loadURL(`file://${url}`, {
+        display.loadURL(`file://${app.url}`, {
             userAgent : this.device.userAgent
         });
         display.getWebContents().enableDeviceEmulation({
             screenPosition : 'mobile',
         });
-        display.getWebContents().openDevTools();
+        if(app.devTools)
+            display.getWebContents().openDevTools();
     }
 
     /**
@@ -127,7 +131,8 @@ class ViewController{
                             },
                             escapeToClose: true}).then(
                             (appData) => {
-                                _that.openNewApp(appData);
+                                if(appData)
+                                    _that.openNewApp(appData);
                             },
                             () => {}
                         );
@@ -141,7 +146,7 @@ class ViewController{
         let _newApp = new App(appData);
         this.app = _newApp;
         this.initDevice();
-        this.loadApp(_newApp.url);
+        this.loadApp(_newApp);
     }, 5);
 };
 
@@ -161,6 +166,24 @@ class ViewController{
         this.app.updateDevice(this.device);
     }
 
+    /**
+     * Open or close
+     */
+    toggleDevTools(){
+        let display = document.querySelector("#display");
+        if(display.isDevToolsOpened()){
+            display.closeDevTools();
+            this.app.devTools = false;
+        }
+        else{
+            this.app.devTools = true;
+        }
+        this.app.syncWithConfig();
+    }
+
+    /**
+     * View and edit app configuration
+     */
     viewSettings(){
         let _that = this;
         this.$mdDialog.show({
@@ -177,7 +200,8 @@ class ViewController{
             },
             escapeToClose: true}).then(
             (appData) => {
-                _that.openNewApp(appData);
+                if(appData)
+                    _that.openNewApp(appData);
             },
             () => {}
         );
@@ -190,7 +214,6 @@ class ViewController{
     setDevice(device){
         this.device = new Device(device, this.app.lastDevice.orientation);
         this.app.updateDevice(this.device);
-        this.StorageService.set(this.app.name, this.app);
         this.device.load();
     }
 

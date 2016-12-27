@@ -7,7 +7,7 @@
     "start": "electron .",
     "clean": "rm -rf ./dist",
     "clean:osx": "rm -rf ./dist/osx",
-    "package": "npm run clean:osx && electron-packager . Respowser --platform=darwin --out=dist/osx --overwrite --ignore=dist --ignore=EXTERNAL_www --ignore=.gitignore"
+    "package": "npm run clean:osx && electron-packager ./ Respowser --platform=darwin --out=dist/osx --overwrite --ignore=dist --ignore=.gitignore --ignore=gulpfile.js"
   },
   "repository": "",
   "keywords": [
@@ -25,22 +25,22 @@
     "angular-aria": "^1.5.5",
     "angular-material": "^1.1.0",
     "angular-messages": "^1.5.5",
+    "app-module-path": "^2.1.0",
     "angular-route": "^1.5.8",
     "bluebird": "^3.4.6",
-    "electron-json-storage": "^2.1.0"
-  },
-  "devDependencies": {
-    "angular-filter": "^0.5.11",
-    "app-module-path": "^2.1.0",
     "del": "^2.2.2",
     "electron": "^1.4.12",
+    "electron-json-storage": "^2.1.0",
+    "lodash": "^4.17.2"
+  },
+  "devDependencies": {
     "electron-connect": "^0.6.1",
-    "electron-packager": "^8.3.0",
+    "electron-packager": "^8.4.0",
     "electron-reload": "^1.0.3",
     "gulp": "^3.9.1",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.3.2",
     "gulp-svgstore": "^6.1.0",
-    "lodash": "^4.17.2"
+    "shelljs": "^0.7.5"
   }
 }
