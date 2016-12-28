@@ -7,7 +7,7 @@
     "start": "electron .",
     "clean": "rm -rf ./dist",
     "clean:osx": "rm -rf ./dist/osx",
-    "package": "npm run clean:osx && electron-packager ./ Respowser --platform=darwin --out=dist/osx --overwrite --ignore=dist --ignore=.gitignore --ignore=gulpfile.js --ignore=client/www/res-app-config.json"
+    "package": "npm run clean:osx && electron-packager ./ Respowser --platform=darwin --out=dist/osx --overwrite --ignore=dist --ignore=.gitignore --ignore=gulpfile.js"
   },
   "repository": "",
   "keywords": [
