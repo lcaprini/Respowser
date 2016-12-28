@@ -54,13 +54,18 @@ class Device {
         let containerStyle = window.getComputedStyle(document.getElementById('deviceContainer'), null);
         let scale = 1;
 
-        if(this.orientation == ORIENTATIONS.PORTRAIT) {
-            let containerHeight = parseInt(containerStyle.height) - parseInt(containerStyle.paddingTop) - parseInt(containerStyle.paddingBottom);
-            scale = containerHeight / this.frame.height;
+        let containerHeight = parseInt(containerStyle.height) - parseInt(containerStyle.paddingTop) - parseInt(containerStyle.paddingBottom);
+        let containerWidth = parseInt(containerStyle.width) - parseInt(containerStyle.paddingLeft) - parseInt(containerStyle.paddingRight);
+        let frameHeight = (this.orientation == ORIENTATIONS.PORTRAIT)? this.frame.height : this.frame.width;
+        let frameWidth = (this.orientation == ORIENTATIONS.PORTRAIT)? this.frame.width : this.frame.height;
+
+        // If container is tall enought to contains scaled frame I use width ratio
+        if (((frameHeight * containerWidth) / frameWidth) < containerHeight) {
+            scale = containerWidth / frameWidth;
         }
-        else{
-            let containerWidth = parseInt(containerStyle.width) - parseInt(containerStyle.paddingLeft) - parseInt(containerStyle.paddingRight);
-            scale = containerWidth / this.frame.height;
+        // I use height ratio otherwise
+        else {
+            scale = containerHeight / frameHeight;
         }
 
         if(scale > 1){
