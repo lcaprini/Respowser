@@ -1,4 +1,3 @@
-
 const App = require("core/app");
 const Device = require("core/device");
 const CONST = require("core/constants");
@@ -9,7 +8,7 @@ const {dialog} = require('electron').remote;
 const fs = require('fs');
 const path = require("path");
 
-class ViewController{
+class ViewController {
 
     /**
      * Initialize ViewController
@@ -46,7 +45,8 @@ class ViewController{
         let that = this;
         window.addEventListener('resize', function(e){
             e.preventDefault();
-            that.$timeout(() => {}, 1);
+            that.$timeout(() =>{
+            }, 1);
         });
     }
 
@@ -67,7 +67,7 @@ class ViewController{
         this.app.devTools = false;
 
         let display = document.querySelector("#display");
-        const loadFrame = () => {
+        const loadFrame = () =>{
             display.removeEventListener("dom-ready", loadFrame);
             _that.loadApp(this.app);
         };
@@ -83,10 +83,10 @@ class ViewController{
 
         let display = document.querySelector("#display");
         display.loadURL(`file://${app.url}`, {
-            userAgent : this.device.userAgent
+            userAgent: this.device.userAgent
         });
         display.getWebContents().enableDeviceEmulation({
-            screenPosition : 'mobile',
+            screenPosition: 'mobile',
         });
         if(app.devTools)
             display.getWebContents().openDevTools();
@@ -100,55 +100,71 @@ class ViewController{
     openApp(){
         let _that = this;
 
-        dialog.showOpenDialog({
-            properties: ['openFile']
-        },
-        (file) => {
-            _that.$timeout(() => {
-                if (file && file.length > 0){
+        if(this.dialog && !this.openBlocked)
+            this.$timeout.cancel(this.dialog);
 
-                    // Find app configuration, if exists
-                    let configPath = Utils.getConfigUrl(file[0]);
+        if(!this.openBlocked){
+            this.openBlocked = true;
 
-                    // If configuration file exists open the app
-                    if(fs.existsSync(configPath)){
-                        let readed = fs.readFileSync(configPath);
-                        _that.openNewApp(JSON.parse(readed));
-                    }
-                    // Otherwise open modal to create new app from URL
-                    else {
-                        this.$mdDialog.show({
-                            controller: 'AppConfigCtrl',
-                            controllerAs: '$ctrl',
-                            templateUrl: `${__dirname}/appconfig/appconfigDialog.html`,
-                            parent: angular.element(document.body),
-                            disableParentScroll: true,
-                            hasBackdrop: false,
-                            clickOutsideToClose: false,
-                            locals: {
-                                url : file[0],
-                                app : null
-                            },
-                            escapeToClose: true}).then(
-                            (appData) => {
-                                if(appData)
-                                    _that.openNewApp(appData);
-                            },
-                            () => {}
-                        );
-                    }
-                }
-            }, 10);
-        });
+            this.dialog = this.$timeout(() =>{
+                dialog.showOpenDialog({
+                        properties: ['openFile']
+                    },
+                    (file) =>{
+                        _that.$timeout(() =>{
+                            if(file && file.length > 0){
+
+                                // Find app configuration, if exists
+                                let configPath = Utils.getConfigUrl(file[0]);
+
+                                // If configuration file exists open the app
+                                if(fs.existsSync(configPath)){
+                                    let readed = fs.readFileSync(configPath);
+                                    _that.openNewApp(JSON.parse(readed));
+                                }
+                                // Otherwise open modal to create new app from URL
+                                else{
+                                    this.$mdDialog.show({
+                                        controller: 'AppConfigCtrl',
+                                        controllerAs: '$ctrl',
+                                        templateUrl: `${__dirname}/appconfig/appconfigDialog.html`,
+                                        parent: angular.element(document.body),
+                                        disableParentScroll: true,
+                                        hasBackdrop: false,
+                                        clickOutsideToClose: false,
+                                        locals: {
+                                            url: file[0],
+                                            app: null
+                                        },
+                                        escapeToClose: true
+                                    }).then(
+                                        (appData) =>{
+                                            if(appData)
+                                                _that.openNewApp(appData);
+                                            _that.openBlocked = false;
+                                        },
+                                        () =>{
+                                        }
+                                    );
+                                }
+                            }
+                            else{
+                                _that.openBlocked = false;
+                            }
+                        }, 10);
+                    });
+            }, 200);
+        }
     };
+
     openNewApp(appData){
-        this.$timeout(() => {
-        let _newApp = new App(appData);
-        this.app = _newApp;
-        this.initDevice();
-        this.loadApp(_newApp);
-    }, 5);
-};
+        this.$timeout(() =>{
+            let _newApp = new App(appData);
+            this.app = _newApp;
+            this.initDevice();
+            this.loadApp(_newApp);
+        }, 5);
+    };
 
     /**
      * Refresh app without reload frame
@@ -195,15 +211,17 @@ class ViewController{
             hasBackdrop: false,
             clickOutsideToClose: false,
             locals: {
-                url : null,
-                app : angular.copy(this.app)
+                url: null,
+                app: angular.copy(this.app)
             },
-            escapeToClose: true}).then(
-            (appData) => {
+            escapeToClose: true
+        }).then(
+            (appData) =>{
                 if(appData)
                     _that.openNewApp(appData);
             },
-            () => {}
+            () =>{
+            }
         );
     }
 
