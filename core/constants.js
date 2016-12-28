@@ -5,7 +5,7 @@ module.exports = {
         DEFAULT_APP     : "myApp",
         LAST_APP        : "last-app",
         RECENTS_APP     : "recent-apps",
-        APP_CONFIG      : "res-app-config.json"
+        APP_CONFIG      : ".res-app-config.json"
     },
 
     ORIENTATIONS: {

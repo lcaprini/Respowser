@@ -15,8 +15,6 @@ class App {
         // Complete url
         this.url = path.dirname(require.main.filename) + "/www/index.html";
 
-        this.config = path.dirname(require.main.filename) + "/www/" + STORAGE.APP_CONFIG;
-
         this.devTools = true;
 
         // Device settings
