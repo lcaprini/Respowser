@@ -2,7 +2,7 @@
     <form ng-cloak name="appForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Nuova app</h2>
+                <h2>New app</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
                     <md-icon md-svg-icon="close"></md-icon>
@@ -14,15 +14,15 @@
             <div class="md-dialog-content no-bottom-padding">
 
                 <md-input-container class="md-block">
-                    <label> Percorso </label>
+                    <label> Path </label>
                     <input type="text" name="url" ng-model="$ctrl.app.url" required disabled>
                 </md-input-container>
 
                 <md-input-container class="md-block no-bottom-margin">
-                    <label> Nome </label>
+                    <label> Name </label>
                     <input type="text" name="name" ng-model="$ctrl.app.name" required>
                     <div ng-messages="appForm.name.$error">
-                        <div ng-message="required"> Inserire il nome dell'app </div>
+                        <div ng-message="required"> Enter app's name </div>
                     </div>
                 </md-input-container>
 
@@ -30,7 +30,7 @@
                     <div flex="33">
 
                         <md-input-container class="md-block no-bottom-margin md-input-has-value">
-                            <label> Device </label>
+                            <label> Devices </label>
                             <div class="checkbox" ng-repeat="type in $ctrl.DEVICE_TYPES">
                                 <md-checkbox class="md-primary"
                                              ng-true-value="'true'" ng-false-value="'false'"
@@ -41,7 +41,7 @@
                             </div>
                             <input type="number" class="hidden" name="typeslength" ng-model="$ctrl.typeslength" ng-min="1">
                             <div ng-messages="appForm.typeslength.$error" class="fake-input-line">
-                                <div ng-message="min"> Definire almeno un device </div>
+                                <div ng-message="min"> Enter at least one device </div>
                             </div>
                         </md-input-container>
 
@@ -49,7 +49,7 @@
                     <div flex="33">
 
                         <md-input-container class="md-block no-bottom-margin md-input-has-value">
-                            <label> Orientamento </label>
+                            <label> Orientation </label>
                             <div class="checkbox" ng-repeat="orientation in $ctrl.ORIENTATIONS">
                                 <md-checkbox class="md-primary"
                                              ng-true-value="'true'" ng-false-value="'false'"
@@ -60,14 +60,14 @@
                             </div>
                             <input type="number" class="hidden" name="orientationlength" ng-model="$ctrl.orientationlength" ng-min="1">
                             <div ng-messages="appForm.orientationlength.$error" class="fake-input-line">
-                                <div ng-message="min"> Definire almeno un orientamento </div>
+                                <div ng-message="min"> Enter at least one orientation </div>
                             </div>
                         </md-input-container>
 
                     </div>
                     <div flex="33">
                         <md-input-container class="md-block no-bottom-margin md-input-has-value">
-                            <label> Sistemi operativi </label>
+                            <label> Operating Systems </label>
                             <div class="checkbox" ng-repeat="os in $ctrl.DEVICE_OSS">
                                 <md-checkbox class="md-primary"
                                              ng-true-value="'true'" ng-false-value="'false'"
@@ -78,7 +78,7 @@
                             </div>
                             <input type="number" class="hidden" name="solength" ng-model="$ctrl.solength" ng-min="1">
                             <div ng-messages="appForm.solength.$error" class="fake-input-line">
-                                <div ng-message="min"> Definire almeno un sistema operativo </div>
+                                <div ng-message="min"> Enter at lest one operating system </div>
                             </div>
                         </md-input-container>
                     </div>
@@ -89,11 +89,11 @@
 
         <md-dialog-actions layout="row">
             <md-button ng-click="$ctrl.closeDialog()">
-                Annulla
+                Cancel
             </md-button>
             <span flex></span>
             <md-button ng-click="$ctrl.createApp()">
-                Apri
+                Create
             </md-button>
         </md-dialog-actions>
     </form>
