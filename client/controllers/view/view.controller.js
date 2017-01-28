@@ -30,7 +30,7 @@ class ViewController {
         console.log(app);
 
         this.ORIENTATIONS = CONST.ORIENTATIONS;
-        this.canOpenOtherApps = !config.canOpenOtherApps;
+        this.canOpenOtherApps = config.canOpenOtherApps;
         this.canOpenDevTools = config.canOpenDevTools;
 
         // Get the list of all available devices
@@ -192,6 +192,7 @@ class ViewController {
             this.app.devTools = false;
         }
         else{
+            display.openDevTools();
             this.app.devTools = true;
         }
         this.app.syncWithConfig();

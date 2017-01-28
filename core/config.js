@@ -4,7 +4,7 @@ const config = {
         width: 1200,
         height: 900
     },
-    canOpenOtherApps : false,
+    canOpenOtherApps : true,
     canOpenDevTools : true
 };
 
