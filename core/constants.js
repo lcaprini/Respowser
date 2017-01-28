@@ -20,8 +20,7 @@ module.exports = {
         },
         OSS : {
             ANDROID : "Android",
-            IOS : "iOS",
-            // WINDOWS : "Windows"
+            IOS : "iOS"
         }
     }
 };

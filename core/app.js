@@ -35,8 +35,7 @@ class App {
             ],
             oss : [
                 DEVICES.OSS.IOS,
-                DEVICES.OSS.ANDROID,
-                // DEVICES.OSS.WINDOWS
+                DEVICES.OSS.ANDROID
             ]
         };
 
