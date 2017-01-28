@@ -16,7 +16,7 @@ Configure your app's name and all device's info:
 - **Orientation**: portrait and/or landscape
 - **Operating** system: Android and/or iOS
 
- ![alt text](resources/screen2.png "New app")
+![alt text](resources/screen2.png "New app")
 
 Now start using your application in Respowser exactly as you would on the mobile phones or tablet.
 
@@ -64,7 +64,6 @@ To do that you can only follow these simple steps:
 - Copy all single page application's source inside `client/www` directory
 - Open `core/config.js` configuration file and set `canOpenOtherApps` to `false`
 - Config you single page application using `core/app.js`:
-
   - _name_: the app name
   - _url_: the url of main `index.html` page
   - _lastDevice.model_: device model name (from `client/devices/devices.list.json`)
